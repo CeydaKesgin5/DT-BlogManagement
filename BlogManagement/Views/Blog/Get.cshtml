@@ -1,0 +1,32 @@
+﻿@model BlogManagement.Models.Blog
+
+<div class="container mt-4">
+    <div class="card shadow rounded">
+        <div class="card-body">
+
+            <h1 class="card-title text-primary">@Model.Title</h1>
+
+            <p class="text-muted">
+                <strong>Author:</strong> @Model.Author |
+                <strong>Published At:</strong> @Model.PublishedAt.ToString("dd MMMM yyyy HH:mm") |
+                <strong>Category:</strong> @Model.Category?.CategoryName
+            </p>
+            <div class="col-md-5 ">
+                @if (!string.IsNullOrEmpty(Model.Image))
+                {
+                    <img src="@Model.Image" alt="Blog Image" class="img-fluid rounded mb-3" />
+                }
+
+            </div>
+          
+            <p class="card-text fs-5">
+                @Html.Raw(Model.Content)
+            </p>
+
+            <a asp-action="Index" class="btn btn-outline-secondary mt-3">
+                <i class="fa fa-arrow-left"></i> Back to Blogs
+            </a>
+
+        </div>
+    </div>
+</div>
