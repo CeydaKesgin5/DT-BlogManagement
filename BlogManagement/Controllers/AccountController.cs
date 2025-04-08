@@ -1,5 +1,5 @@
-﻿using BlogManagement.DTOs;
-using BlogManagement.Models;
+﻿using Entities.DTOs;
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 

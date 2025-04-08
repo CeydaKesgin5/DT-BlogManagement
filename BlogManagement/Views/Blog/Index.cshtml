@@ -1,4 +1,10 @@
-﻿@model IEnumerable<Blog>
+﻿@using Entities.Models;
+@model IEnumerable<Blog>
+<style>
+    tr {
+        height: 90px; /* Tüm satırlar için yükseklik ayarlama */
+    }
+</style>
 
 <div class="text-center">
     <div class="display-6">Blogs</div>
@@ -26,7 +32,6 @@
                 <th>Id</th>
                 <th>Image</th>
                 <th>Title</th>
-                <th>Author</th>
                 <th>Published At</th>
                 <th>Operations</th>
             </tr>
@@ -39,10 +44,12 @@
 
                     <td>
                         <img class="border border-light rounded" src="@blog?.Image" 
-                        width="50" />
+                        width="80" />
                     </td>
-                    <td>@blog.Title</td>
-                    <td>@blog.Author</td>
+                    <td class="text-left" style="font-size: 20px;">@blog.Title
+                        <br />@blog.Author
+                    </td>
+               
                     <td>@blog.PublishedAt.ToString("d")</td>
                     <td>
                         <div class="btn-group">

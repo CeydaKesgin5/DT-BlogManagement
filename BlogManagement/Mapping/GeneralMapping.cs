@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using BlogManagement.DTOs;
-using BlogManagement.DTOs.BlogDTOs;
-using BlogManagement.Models;
+using Entities.DTOs;
+using Entities.DTOs.BlogDTOs;
+using Entities.Models;
 
 namespace BlogManagement.Mapping
 {

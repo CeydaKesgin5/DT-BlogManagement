@@ -1,4 +1,4 @@
-﻿@model BlogManagement.Models.Blog
+﻿@model Entities.Models.Blog
 
 <div class="text-center">
     <div class="display-6"> Create Blog</div>
@@ -41,6 +41,8 @@
         <input name="file" type="file" class="form-control" />
         <span asp-validation-for="Image" class="text-danger"></span>
     </div>
+    <input type="hidden" asp-for="UserId" value="@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value" />
+    <input type="hidden" asp-for="PublishedAt" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" />
 
     <div class="form-group my-3">
         <div class="btn-group">
@@ -55,3 +57,4 @@
         </div>
     </div>
 </form>
+

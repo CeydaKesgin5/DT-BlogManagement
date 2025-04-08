@@ -1,7 +1,7 @@
-﻿using BlogManagement.DTOs.BlogDTOs;
-using BlogManagement.Models;
+﻿using Entities.DTOs.BlogDTOs;
+using Entities.Models;
 using BlogManagement.Services;
-using BlogManagement.Services.Contracts;
+using Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -38,13 +38,25 @@ namespace BlogManagement.Controllers
             ViewBag.Categories = GetCategoriesSelectList();
             return View();
         }
-        private SelectList GetCategoriesSelectList()
+        //private SelectList GetCategoriesSelectList()
+        //{
+        //    return new SelectList(_blogService.CategoryService.GetAllCategories(false), //veri tabanındaki kayıtlar item
+        //     "CategoryID", //veri alanı
+        //     "CategoryName", //text alanı
+        //     "1"); //default olarak idsi 1 olan gelecek 
+        //}
+
+        private List<SelectListItem> GetCategoriesSelectList()
         {
-            return new SelectList(_blogService.CategoryService.GetAllCategories(false), //veri tabanındaki kayıtlar item
-             "CategoryID", //veri alanı
-             "CategoryName", //text alanı
-             "1"); //default olarak idsi 1 olan gelecek 
+            return _blogService.CategoryService
+                .GetAllCategories(false)
+                .Select(x => new SelectListItem
+                {
+                    Value = x.CategoryID.ToString(),
+                    Text = x.CategoryName
+                }).ToList();
         }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]

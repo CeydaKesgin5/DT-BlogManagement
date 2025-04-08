@@ -1,11 +1,10 @@
-using BlogManagement.Data;
-using BlogManagement.Services.Contracts;
+using Services.Contracts;
+using Services;
 using BlogManagement.Services;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System;
-using BlogManagement.Repositories.Contracts;
-using BlogManagement.Repositories;
+using Repositories.Contracts;
+using Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -27,7 +26,7 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddControllersWithViews();
 
 
-builder.Services.AddDbContext<BlogManagement.Data.AppDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -56,7 +55,7 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    //app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
 
@@ -71,7 +70,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Blog}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 
