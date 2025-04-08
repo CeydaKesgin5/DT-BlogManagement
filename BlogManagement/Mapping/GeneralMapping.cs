@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BlogManagement.DTOs;
 using BlogManagement.DTOs.BlogDTOs;
 using BlogManagement.Models;
 
@@ -10,6 +11,9 @@ namespace BlogManagement.Mapping
 
             CreateMap<Category, CreateBlogDto>().ReverseMap();
             CreateMap<Category, UpdateBlogDto>().ReverseMap();
+            CreateMap<UserDtoForCreation, UserDto>().ReverseMap();
+
+
         }
     }
 }

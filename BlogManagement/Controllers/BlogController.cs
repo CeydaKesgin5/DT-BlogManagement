@@ -2,11 +2,13 @@
 using BlogManagement.Models;
 using BlogManagement.Services;
 using BlogManagement.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BlogManagement.Controllers
 {
+    [Authorize]
     public class BlogController : Controller
     {
         private readonly IService _blogService;
@@ -16,17 +18,20 @@ namespace BlogManagement.Controllers
             _blogService = blogService;
         }
 
+        [AllowAnonymous]
         public IActionResult Get([FromRoute(Name = "id")] int id)
         {
             var model = _blogService.BlogService.GetOneBlog(id, false);
             return View(model);
         }
+        [AllowAnonymous]
+
         public IActionResult Index()
         {
             var model = _blogService.BlogService.GetAllBlogs(false);
             return View(model);
         }
-
+        [Authorize]
         public IActionResult Create()
         {
             //Seçilebilir bir liste tanımı
@@ -42,6 +47,7 @@ namespace BlogManagement.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Create([FromForm] Blog product)
         {
             if (ModelState.IsValid)
@@ -51,7 +57,7 @@ namespace BlogManagement.Controllers
             }
             return View();
         }
-
+        [Authorize]
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
             var model = _blogService.BlogService.GetOneBlog(id, false);
@@ -60,6 +66,7 @@ namespace BlogManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Update(Blog product)
         {
             if (ModelState.IsValid)
@@ -72,6 +79,7 @@ namespace BlogManagement.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public IActionResult Delete([FromRoute(Name = "id")] int id)
         {
             _blogService.BlogService.DeleteOneBlog(id);
