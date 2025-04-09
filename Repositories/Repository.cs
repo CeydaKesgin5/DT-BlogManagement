@@ -33,6 +33,14 @@ namespace Repositories
                 : _context.Set<T>().Where(expression).AsNoTracking().SingleOrDefault();
         }
 
+        public IQueryable<T> FindAllByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
+        {
+            return !trackChanges
+                ? _context.Set<T>().Where(expression).AsNoTracking()
+                : _context.Set<T>().Where(expression);
+        }
+
+
         public void Remove(T entity)
         {
             _context.Set<T>().Remove(entity);

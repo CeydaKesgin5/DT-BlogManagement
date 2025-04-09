@@ -18,5 +18,7 @@ namespace Services.Contracts
         void CreateBlog(Blog blog);
         void UpdateOneBlog(Blog blog);
         void DeleteOneBlog(int id);
+
+        public IEnumerable<Blog> GetBlogsByCategory(int categoryId, bool trackChanges);
     }
 }

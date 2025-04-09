@@ -6,5 +6,7 @@
         ICategoryService CategoryService { get; }
 
         IAuthService AuthService { get; }
+
+        ICommentService CommentService { get; }
     }
 }

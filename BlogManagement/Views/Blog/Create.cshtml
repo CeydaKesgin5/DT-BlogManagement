@@ -44,6 +44,10 @@
     <input type="hidden" asp-for="UserId" value="@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value" />
     <input type="hidden" asp-for="PublishedAt" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" />
 
+    <input type="hidden" asp-for="CategoryId" name="Category" value="@Model?.Category" />
+    <input type="hidden" asp-for="UserId" name="User" value="@Model?.User" />
+
+
     <div class="form-group my-3">
         <div class="btn-group">
             <button class="btn btn-primary" type="submit">

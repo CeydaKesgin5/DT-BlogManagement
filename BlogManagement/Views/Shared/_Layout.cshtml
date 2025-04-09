@@ -21,18 +21,43 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Home Page</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                     
                         @if (User.Identity.IsAuthenticated) // Kullanıcı giriş yaptı mı?
-                    {
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Create">Create Blog</a>
                         </li>
+                         }
+                    
+                       else
+                       {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a> 
+                            </li> 
+                        }
+                      
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Update">Update Blog</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="AccesDenied">AccesDenied</a>
+                        </li>
+                      
+                    </ul>
+
+
+                    <ul class="navbar-nav">
+                          @if (User.Identity.IsAuthenticated) // Kullanıcı giriş yaptı mı?
+                    {
+                        <li class="nav-item">
+                            <a target="_blank" class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">
+                                <i class="fa fa-solid fa-search">
+
+                                </i>
+                                Logout
+                            </a>
                         </li>
                     }
                         else
@@ -41,23 +66,7 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">List Blog</a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="AccesDenied">AccesDenied</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                        </li>
+                      
                     </ul>
                 </div>
             </div>
@@ -69,10 +78,10 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        @RenderSection("Footer", false)
-        <partial name="_Footer" />
-    </footer>
+    @* <footer class="border-top footer text-muted"> *@
+    @*     @RenderSection("Footer", false) *@
+    @*     <partial name="_Footer" /> *@
+    @* </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

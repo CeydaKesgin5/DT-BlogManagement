@@ -4,6 +4,8 @@
     {
         IBlogRepository Blog { get; }
         ICategoryRepository Category { get; }
+
+        ICommentRepository Comment { get; }
         void Save();
     }
 }

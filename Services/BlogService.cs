@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities.DTOs.BlogDTOs;
 using Entities.Models;
+using Repositories;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -42,6 +43,12 @@ namespace Services
                 throw new Exception("Blog not found!");
             return blog;
         }
+
+        public IEnumerable<Blog> GetBlogsByCategory(int categoryId, bool trackChanges)
+        {
+            return _manager.Blog.GetBlogsByCategory(categoryId, trackChanges);
+        }
+
 
         public void UpdateOneBlog(Blog blog)
         {

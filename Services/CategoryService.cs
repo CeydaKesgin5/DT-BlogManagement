@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -18,6 +19,12 @@ namespace BlogManagement.Services
             return _repositoryManager.Category.FindAll(trackChanges);
         }
 
-   
+        public Category? GetOneCategory(int id, bool trackChanges)
+        {
+            var category = _repositoryManager.Category.GetOneCategory(id, trackChanges);
+            if (category is null)
+                throw new Exception("Blog not found!");
+            return category;
+        }
     }
 }

@@ -8,5 +8,11 @@ namespace Repositories.Contracts
         Blog? GetOneBlog(int id, bool trackChanges);
         void CreateOneBlog(Blog Blog);
         void DeleteOneBlog(Blog blog);
+        public IEnumerable<Blog> GetBlogsByCategory(int categoryId, bool trackChanges);
+
+
+
+
+
     }
 }

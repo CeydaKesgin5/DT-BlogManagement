@@ -2,6 +2,7 @@
 using Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Entities.Models;
+using System.Linq;
 
 namespace Repositories
 {
@@ -12,9 +13,9 @@ namespace Repositories
 
         }
 
-        public void CreateOneBlog(Blog product) => Create(product);
+        public void CreateOneBlog(Blog blog) => Create(blog);
 
-        public void DeleteOneBlog(Blog product) => Remove(product);
+        public void DeleteOneBlog(Blog blog) => Remove(blog);
 
         public IQueryable<Blog> GetAllBlogs(bool trackChanges) => FindAll(trackChanges);
 
@@ -23,6 +24,13 @@ namespace Repositories
         {
             return FindByCondition(p => p.Id.Equals(id), trackChanges);
         }
+
+        
+        public IEnumerable<Blog> GetBlogsByCategory(int categoryId, bool trackChanges)
+        {
+            return FindAllByCondition(b => b.CategoryId == categoryId, trackChanges).ToList();
+        }
+
 
     }
     //    private readonly AppDbContext _context;
