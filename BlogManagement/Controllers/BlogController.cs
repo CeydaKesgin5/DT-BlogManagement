@@ -29,30 +29,42 @@ namespace BlogManagement.Controllers
         {
             var model = _blogService.GetOneBlog(id, false);
 
-            // Yorumları al
             model.Comments = _context.Comments.Where(c => c.BlogId == id).ToList(); // Bloga ait yorumları al
 
-            // Debugging için yorumların sayısını kontrol et
             if (model.Comments == null)
             {
-                // Yorum listesi null ise
-                ViewBag.CommentCount = 0; // Değişken ile bilgi ver
+                ViewBag.CommentCount = 0;
             }
             else
             {
-                ViewBag.CommentCount = model.Comments.Count; // Yorum sayısını değişkene ata
+                ViewBag.CommentCount = model.Comments.Count; 
             }
 
             return View(model);
         }
         [AllowAnonymous]
 
-        public IActionResult Index()
+        //public IActionResult Index()
+        //{
+        //    var model = _service.BlogService.GetAllBlogs(false);
+        //    return View(model);
+
+
+        //}
+
+        public IActionResult Index(int? categoryId)
         {
-            var model = _service.BlogService.GetAllBlogs(false);
-            return View(model);
+            if (categoryId != null)
+            {
+                var blogsByCategory = _service.BlogService.GetBlogsByCategory(categoryId.Value, false);
+                var category = _service.CategoryService.GetOneCategory((int)categoryId, false);
+                ViewBag.CategoryId = categoryId;
+                ViewBag.CategoryName = category?.CategoryName;
+                return View(blogsByCategory);
+            }
 
-
+            var allBlogs = _service.BlogService.GetAllBlogs(false);
+            return View(allBlogs);
         }
         [Authorize]
         public IActionResult Create()
@@ -62,16 +74,6 @@ namespace BlogManagement.Controllers
             return View();
         }
 
-
-
-      
-        //private SelectList GetCategoriesSelectList()
-        //{
-        //    return new SelectList(_service.CategoryService.GetAllCategories(false), //veri tabanındaki kayıtlar item
-        //     "CategoryID", //veri alanı
-        //     "CategoryName", //text alanı
-        //     "1"); //default olarak idsi 1 olan gelecek 
-        //}
 
         private List<SelectListItem> GetCategoriesSelectList()
         {

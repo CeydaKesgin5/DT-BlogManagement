@@ -32,53 +32,13 @@
                     }
                 </div>
 
-               <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Published At</th>
-                        <th>Operations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (Blog blog in Model)
-                    {
-                        <tr>
-                            <td>@blog.Id</td>
-
-                            <td>
-                                <img class="border border-light rounded" src="@blog?.Image" 
-                                width="80" />
-                            </td>
-                            <td class="text-left" style="font-size: 20px;">@blog.Title
-                                <br />@blog.Author
-                            </td>
-               
-                            <td>@blog.PublishedAt.ToString("d")</td>
-                            <td>
-                                <div class="btn-group">
-                                    @if (User.Identity.IsAuthenticated) // Kullanıcı giriş yaptı mı?
-                                    {
-                                        <a class="btn btn-warning" asp-action="Update" asp-route-id="@blog.Id">
-                                            <i class="fa fa-edit"></i>
-                                            Edit
-                                        </a>
-                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@blog.Id">
-                                            <i class="fa fa-trash"></i>
-                                            Delete
-                                        </a>
-                                    }
-                                    <a class="btn btn-info" target="_blank" asp-area="" asp-controller="Blog" asp-action="Get" asp-route-id="@blog.Id">
-                                        <i class="fa fa-search"></i>
-                                        View
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        @if (ViewBag.CategoryId != null)
+        {
+            @await Component.InvokeAsync("CategoryBlogList", new { categoryId = ViewBag.CategoryId })
+        }
+        else
+        {
+            @await Component.InvokeAsync("AllBlogList")
+        }
    </div>
 </div>

@@ -1,15 +1,31 @@
 ﻿@model IEnumerable<Entities.Models.Category>
 
-<div class="category-menu">
-    <h4>Kategoriler</h4>
-    <ul class="list-group">
-        @foreach (var category in Model)
-        {
-            <li class="list-group-item">
-                <a href="@Url.Action("Index", "Blog", new { selectedCategoryId = category.CategoryID })">
-                    @category.CategoryName
-                </a>
-            </li>
-        }
-    </ul>
-</div>
+@* <div class="category-menu"> *@
+@*     <h4>Kategoriler</h4> *@
+@*     <ul class="list-group"> *@
+@*         @foreach (var category in Model) *@
+@*         { *@
+@*             <li class="list-group-item"> *@
+@*                 <a href="@Url.Action("Index", "Blog", new { selectedCategoryId = category.CategoryID })"> *@
+@*                     @category.CategoryName *@
+@*                 </a> *@
+@*             </li> *@
+@*         } *@
+@*     </ul> *@
+@* </div> *@
+
+
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <a asp-controller="Blog" asp-action="Index">All Blogs</a>
+    </li>
+    @foreach (var category in Model)
+    {
+        <li class="list-group-item">
+            <a asp-controller="Blog" asp-action="Index" asp-route-categoryId="@category.CategoryID">
+                @category.CategoryName
+            </a>
+        </li>
+    }
+</ul>
