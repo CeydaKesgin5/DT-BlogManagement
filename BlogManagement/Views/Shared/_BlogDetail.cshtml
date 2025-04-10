@@ -1,0 +1,24 @@
+﻿@model Entities.Models.Blog
+
+<div class="container mt-4">
+    <div class="card shadow rounded">
+        <div class="card-body">
+            <h1 class="card-title text-primary text-center" style="color: darkgreen;">@Model.Title</h1>
+
+            <p class="text-muted" style="font-size: 24px;">
+                <strong>Author:</strong> @Model.Author
+                <br />
+                <strong>Published At:</strong> @Model.PublishedAt.ToString("dd MMMM yyyy")
+                <br />
+                <strong>Category:</strong> @Model.Category?.CategoryName
+            </p>
+
+            <div class="col-md-5 mb-3">
+                @if (!string.IsNullOrEmpty(Model.Image))
+                {
+                    <img src="@Model.Image" alt="Blog Image" class="img-fluid rounded justify-content-center" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
