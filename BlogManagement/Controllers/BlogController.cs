@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Services;
 using Repositories;
+using BlogManagement.Models;
+using Entities.RequestParameters;
+using System.Reflection.Metadata;
+using System.Security.Claims;
 
 namespace BlogManagement.Controllers
 {
@@ -42,6 +46,10 @@ namespace BlogManagement.Controllers
 
             return View(model);
         }
+
+
+    
+
         [AllowAnonymous]
 
         //public IActionResult Index()
@@ -54,6 +62,7 @@ namespace BlogManagement.Controllers
 
         public IActionResult Index(int? categoryId)
         {
+            
             if (categoryId != null)
             {
                 var blogsByCategory = _service.BlogService.GetBlogsByCategory(categoryId.Value, false);
@@ -61,10 +70,12 @@ namespace BlogManagement.Controllers
                 ViewBag.CategoryId = categoryId;
                 ViewBag.CategoryName = category?.CategoryName;
                 return View(blogsByCategory);
+
             }
 
             var allBlogs = _service.BlogService.GetAllBlogs(false);
             return View(allBlogs);
+
         }
         [Authorize]
         public IActionResult Create()
@@ -106,6 +117,13 @@ namespace BlogManagement.Controllers
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
             var model = _service.BlogService.GetOneBlog(id, false);
+
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (model.UserId != currentUserId)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             return View(model);
         }
 
@@ -114,6 +132,7 @@ namespace BlogManagement.Controllers
         [Authorize]
         public IActionResult Update(Blog comment)
         {
+
             if (ModelState.IsValid)
             {
                 _service.BlogService.UpdateOneBlog(comment);
@@ -127,7 +146,14 @@ namespace BlogManagement.Controllers
         [Authorize]
         public IActionResult Delete([FromRoute(Name = "id")] int id)
         {
+            var model = _service.BlogService.GetOneBlog(id, false);
             _service.BlogService.DeleteOneBlog(id);
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (model.UserId != currentUserId)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
             return RedirectToAction("Index");
         }
 

@@ -85,9 +85,10 @@ namespace BlogManagement.Controllers
             //    }
             //}
 
-            return View();
+            return RedirectToAction("Login", "Account");
         }
 
+        [HttpGet]
         public IActionResult AccessDenied([FromQuery(Name = "ReturnUrl")] string returUrl)
         {
             return View();

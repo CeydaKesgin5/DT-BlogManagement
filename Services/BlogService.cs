@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities.DTOs.BlogDTOs;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Repositories.Contracts;
 using Services.Contracts;
@@ -56,6 +57,11 @@ namespace Services
             entity.Title = blog.Title;
             entity.Content = blog.Content;
             _manager.Save();
+        }
+
+        public IEnumerable<Blog> GetLatestBlogs(bool trackChanges)
+        {
+            return  _manager.Blog.FindAll(false).OrderByDescending(b => b.PublishedAt).ToList();
         }
     }
     //private readonly IMapper _mapper;

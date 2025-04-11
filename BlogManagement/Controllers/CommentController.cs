@@ -68,8 +68,6 @@ namespace CommentManagement.Controllers
             }
             return RedirectToAction("Get", "Blog", new { id = comment.BlogId });
 
-            // Silme işleminden sonra kullanıcıyı yönlendir
-            // return RedirectToAction("Index", "Blog");
         }
 
 

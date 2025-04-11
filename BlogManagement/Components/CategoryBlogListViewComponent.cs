@@ -16,8 +16,6 @@ namespace BlogManagement.Components
 
         public IViewComponentResult Invoke(int categoryId)
         {
-            //var categories = _manager.CategoryService.GetAllCategories(false);
-            //return View(categories);
             var blogs = _manager.BlogService.GetBlogsByCategory(categoryId, false);
             return View(blogs);
         }

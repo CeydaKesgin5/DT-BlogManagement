@@ -11,66 +11,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BlogManagement</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Home Page</a>
-                        </li>
-                     
-                        @if (User.Identity.IsAuthenticated) // Kullanıcı giriş yaptı mı?
-                        {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Create">Create Blog</a>
-                        </li>
-                         }
-                    
-                       else
-                       {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a> 
-                            </li> 
-                        }
-                      
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="AccesDenied">AccesDenied</a>
-                        </li>
-                      
-                    </ul>
-
-
-                    <ul class="navbar-nav">
-                          @if (User.Identity.IsAuthenticated) // Kullanıcı giriş yaptı mı?
-                    {
-                        <li class="nav-item">
-                            <a target="_blank" class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">
-                                <i class="fa fa-solid fa-search">
-
-                                </i>
-                                Logout
-                            </a>
-                        </li>
-                    }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
-                        }
-                      
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <partial name="_Navbar"></partial>
+        @RenderSection("Header",false);
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -85,6 +27,13 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

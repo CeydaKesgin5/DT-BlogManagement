@@ -20,5 +20,7 @@ namespace Services.Contracts
         void DeleteOneBlog(int id);
 
         public IEnumerable<Blog> GetBlogsByCategory(int categoryId, bool trackChanges);
+        public IEnumerable<Blog> GetLatestBlogs(bool trackChanges);
+
     }
 }
