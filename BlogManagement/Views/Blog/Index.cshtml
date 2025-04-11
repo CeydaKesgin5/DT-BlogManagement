@@ -4,6 +4,8 @@
     tr {
         height: 90px; /* Tüm satırlar için yükseklik ayarlama */
     }
+
+   
 </style>
 
 <div class="row">
@@ -11,6 +13,18 @@
         @await Component.InvokeAsync("CategoriesMenu")
         <br /><br /><br />
 
+       <form method="get" action="@Url.Action("Index","Blog")">
+            <div class="form-group">
+                <select class="form-select text-primary" aria-label="Default select example" id="sortOrder" name="sortOrder" onchange="this.form.submit()">
+                    <option selected>Sort Blogs By</option>
+                    <option value="">Oldest First</option>
+                    <option value="date">Newest First</option>
+                </select>
+
+           
+            </div>
+       </form>
+    
     </div>
 
     
@@ -35,14 +49,25 @@
                     }
                 </div>
 
-        @if (ViewBag.CategoryId != null)
-        {
-            @await Component.InvokeAsync("CategoryBlogList", new { categoryId = ViewBag.CategoryId })
-        }
-        else
-        {
-            @await Component.InvokeAsync("AllBlogList")
-        }
+            @if (ViewBag.CategoryId != null)
+            {
+                @await Component.InvokeAsync("CategoryBlogList", new { categoryId = ViewBag.CategoryId })
+            }
+            else
+            {
+                @if (ViewBag.SortOrder == "date")//sort blogs by date
+                {
+                    <div id="blogsContainer">
+                        @await Component.InvokeAsync("GetLatestBlogs", new { sortOrder = ViewBag.SortOrder })
+                    </div>
+                }
+                else
+                {
+                    <div id="blogsContainer">
+                        @await Component.InvokeAsync("AllBlogList")
+                    </div>
+                }
+            }
    </div>
 </div>
 

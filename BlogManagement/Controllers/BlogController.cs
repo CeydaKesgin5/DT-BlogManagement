@@ -60,8 +60,24 @@ namespace BlogManagement.Controllers
 
         //}
 
-        public IActionResult Index(int? categoryId)
+        //[HttpGet]
+        //public IActionResult GetBlogsLatest( string sortOrder)
+        //{
+        //    ViewBag.SortOrder = sortOrder;
+        //    var allBlogs = _service.BlogService.GetAllBlogs(false);
+        //    if (sortOrder == "date")
+        //    { 
+        //        allBlogs= allBlogs.OrderByDescending(b=>b.PublishedAt).ToList();
+        //    }
+        //    return View(allBlogs);
+        //}
+
+        public IActionResult Index(int? categoryId, string sortOrder)
         {
+            ViewBag.SortOrder = sortOrder;
+
+            var allBlogs = _service.BlogService.GetAllBlogs(false);
+
             
             if (categoryId != null)
             {
@@ -72,8 +88,12 @@ namespace BlogManagement.Controllers
                 return View(blogsByCategory);
 
             }
+            if (sortOrder == "date")
+            {
+                allBlogs = allBlogs.OrderByDescending(b => b.PublishedAt).ToList();
+            }
 
-            var allBlogs = _service.BlogService.GetAllBlogs(false);
+
             return View(allBlogs);
 
         }
