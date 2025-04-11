@@ -44,6 +44,8 @@ namespace CommentManagement.Controllers
                 _commentService.CommentService.CreateComment(comment);
                 return RedirectToAction("Get", "Blog", new { id = comment.BlogId });
             }
+            TempData["success"] = $"Yorumunuz başarıyla eklendi!";
+
             return RedirectToAction("Get", "Blog", new { id = comment.BlogId });
         }
         [Authorize]
@@ -66,6 +68,8 @@ namespace CommentManagement.Controllers
                 _commentService.CommentService.DeleteOneComment(id);
 
             }
+            TempData["success"] = $"Yorum silme işleminiz başarıyla gerçekleştirildi.";
+
             return RedirectToAction("Get", "Blog", new { id = comment.BlogId });
 
         }

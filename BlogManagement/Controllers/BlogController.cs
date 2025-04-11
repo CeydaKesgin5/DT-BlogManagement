@@ -125,6 +125,8 @@ namespace BlogManagement.Controllers
             if (ModelState.IsValid)
             {
                 _service.BlogService.CreateBlog(blog);
+                TempData["success"] = $"Başarıyla eklendi! {blog}";
+
                 return RedirectToAction("Index");
             }
             return View();
@@ -144,6 +146,8 @@ namespace BlogManagement.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
+           
+
             return View(model);
         }
 
@@ -155,7 +159,8 @@ namespace BlogManagement.Controllers
 
             if (ModelState.IsValid)
             {
-                _service.BlogService.UpdateOneBlog(comment);
+                _service.BlogService.UpdateOneBlog(comment); 
+                TempData["success"] = $"Başarıyla güncellendi! {model}";
                 return RedirectToAction("Index");
             }
             return View();
@@ -174,6 +179,8 @@ namespace BlogManagement.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
+            TempData["danger"] = $"Başarıyla silindi! {model}";
+
             return RedirectToAction("Index");
         }
 

@@ -2,6 +2,7 @@
 using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata;
 
 namespace BlogManagement.Controllers
 {
@@ -42,12 +43,16 @@ namespace BlogManagement.Controllers
                 }
                 ModelState.AddModelError("Error", "Invalid username or password.");
             }
+            TempData["success"] = $"Giriş başarılı!";
+
             return View();
         }
 
         public async Task<IActionResult> Logout([FromQuery(Name = "ReturnUrl")] string ReturnUrl = "/Blog/Index")
         {
             await _signInManager.SignOutAsync();
+            TempData["success"] = $"Başarıyla çıkış yaptınız.";
+
             return Redirect(ReturnUrl);
         }
 
