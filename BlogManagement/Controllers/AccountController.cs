@@ -65,32 +65,18 @@ namespace BlogManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([FromForm] RegisterDto model)
         {
+
             var user = new IdentityUser
             {
                 UserName = model.UserName,
                 Email = model.Email,
+
             };
+            TempData["success"] = $"Kayıt işlemi başarıyla gerçekleşti!";
+            var result = await _userManager.CreateAsync(user, model.Password);
 
-            var result = await _userManager
-                .CreateAsync(user, model.Password);
 
-            //if (result.Succeeded)
-            //{
-            //    var roleResult = await _userManager
-            //        .AddToRoleAsync(user, "User");
-
-            //    if (roleResult.Succeeded)
-            //        return RedirectToAction("Login", new { ReturnUrl = "/" });
-            //}
-            //else
-            //{
-            //    foreach (var err in result.Errors)
-            //    {
-            //        ModelState.AddModelError("", err.Description);
-            //    }
-            //}
-
-            return RedirectToAction("Login", "Account");
+            return View("Login");
         }
 
         [HttpGet]

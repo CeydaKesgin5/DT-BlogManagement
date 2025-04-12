@@ -33,7 +33,7 @@ namespace BlogManagement.Controllers
         {
             var model = _blogService.GetOneBlog(id, false);
 
-            model.Comments = _context.Comments.Where(c => c.BlogId == id).ToList(); // Bloga ait yorumları al
+            model.Comments = _context.Comments.Where(c => c.BlogId == id).ToList(); // Bloga ait yorumlar
 
             if (model.Comments == null)
             {
@@ -51,26 +51,6 @@ namespace BlogManagement.Controllers
     
 
         [AllowAnonymous]
-
-        //public IActionResult Index()
-        //{
-        //    var model = _service.BlogService.GetAllBlogs(false);
-        //    return View(model);
-
-
-        //}
-
-        //[HttpGet]
-        //public IActionResult GetBlogsLatest( string sortOrder)
-        //{
-        //    ViewBag.SortOrder = sortOrder;
-        //    var allBlogs = _service.BlogService.GetAllBlogs(false);
-        //    if (sortOrder == "date")
-        //    { 
-        //        allBlogs= allBlogs.OrderByDescending(b=>b.PublishedAt).ToList();
-        //    }
-        //    return View(allBlogs);
-        //}
 
         public IActionResult Index(int? categoryId, string sortOrder)
         {
@@ -97,15 +77,17 @@ namespace BlogManagement.Controllers
             return View(allBlogs);
 
         }
+
+
         [Authorize]
         public IActionResult Create()
         {
-            //Seçilebilir bir liste tanımı
+           
             ViewBag.Categories = GetCategoriesSelectList();
             return View();
         }
 
-
+        //Seçilebilir liste
         private List<SelectListItem> GetCategoriesSelectList()
         {
             return _service.CategoryService
@@ -154,12 +136,12 @@ namespace BlogManagement.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public IActionResult Update(Blog comment)
+        public IActionResult Update(Blog model)
         {
 
             if (ModelState.IsValid)
             {
-                _service.BlogService.UpdateOneBlog(comment); 
+                _service.BlogService.UpdateOneBlog(model); 
                 TempData["success"] = $"Başarıyla güncellendi! {model}";
                 return RedirectToAction("Index");
             }

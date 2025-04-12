@@ -49,16 +49,97 @@ namespace Repositories
                .HasForeignKey(c => c.BlogId)
                .OnDelete(DeleteBehavior.Restrict);
 
-
             //modelBuilder.Entity<User>().HasData(
-            //   new User { Id = "59d917ae-6c68-4852-8b5e-cdf78b79be4f", UserName = "ceyda123", Email = "ceyda@example.com", FullName="Ceyda Kesgin", PasswordHash = "hashedpass1" },
-            //   new User { Id = "fddf3976-0eb3-4abe-9d01-e18ce5957bed", UserName = "mert_98", Email = "mert@example.com", FullName = "Mert ", PasswordHash = "hashedpass2" },
-            //   new User { Id = "be7fcc00-4ca6-4603-9456-e389a78de363", UserName = "elifkaya", Email = "elif@example.com", FullName = "Elif Kaya", PasswordHash = "hashedpass3" },
-            //   new User { Id = "e72f91b4-e511-47f2-aad6-e79753c3cda1", UserName = "ali", Email = "ali@example.com", FullName = "Ali Doğa", PasswordHash = "hashedpass4" },
-            //   new User { Id = "4bae5b1b-be95-44c7-8995-8288cb93bd20", UserName = "ahmet", Email = "ahmet@example.com", FullName = "Ahmet Güneş", PasswordHash = "hashedpass5" }
+            //    new User
+            //    {
+            //        Id = "4bae5b1b-be95-44c7-8995-8288cb93bd20",
+            //        UserName = "ceyda123",
+            //        NormalizedUserName = "CEYDA123",
+            //        Email = "ceyda@example.com",
+            //        NormalizedEmail = "CEYDA@EXAMPLE.COM",
+            //        EmailConfirmed = false,
+            //        PasswordHash = "hashedpass1",
+            //        SecurityStamp = Guid.NewGuid().ToString(),
+            //        ConcurrencyStamp = Guid.NewGuid().ToString(),
+            //        PhoneNumberConfirmed = false,
+            //        TwoFactorEnabled = false,
+            //        LockoutEnabled = false,
+            //        AccessFailedCount = 0
+            //    },
+            //    new User
+            //    {
+            //        Id = "e72f91b4-e511-47f2-aad6-e79753c3cda1",
+            //        UserName = "mert_98",
+            //        NormalizedUserName = "MERT_98",
+            //        Email = "mert@example.com",
+            //        NormalizedEmail = "MERT@EXAMPLE.COM",
+            //        EmailConfirmed = false,
+            //        PasswordHash = "hashedpass2",
+            //        SecurityStamp = Guid.NewGuid().ToString(),
+            //        ConcurrencyStamp = Guid.NewGuid().ToString(),
+            //        PhoneNumberConfirmed = false,
+            //        TwoFactorEnabled = false,
+            //        LockoutEnabled = false,
+            //        AccessFailedCount = 0
+            //    },
+            //    new User
+            //    {
+            //        Id = "be7fcc00-4ca6-4603-9456-e389a78de363",
+            //        UserName = "elifkaya",
+            //        NormalizedUserName = "ELIFKAYA",
+            //        Email = "elif@example.com",
+            //        NormalizedEmail = "ELIF@EXAMPLE.COM",
+            //        EmailConfirmed = false,
+            //        PasswordHash = "hashedpass3",
+            //        SecurityStamp = Guid.NewGuid().ToString(),
+            //        ConcurrencyStamp = Guid.NewGuid().ToString(),
+            //        PhoneNumberConfirmed = false,
+            //        TwoFactorEnabled = false,
+            //        LockoutEnabled = false,
+            //        AccessFailedCount = 0
+            //    },
+            //    new User
+            //    {
+            //        Id = "fddf3976-0eb3-4abe-9d01-e18ce5957bed",
+            //        UserName = "ali",
+            //        NormalizedUserName = "ALI",
+            //        Email = "ali@example.com",
+            //        NormalizedEmail = "ALI@EXAMPLE.COM",
+            //        EmailConfirmed = false,
+            //        PasswordHash = "hashedpass4",
+            //        SecurityStamp = Guid.NewGuid().ToString(),
+            //        ConcurrencyStamp = Guid.NewGuid().ToString(),
+            //        PhoneNumberConfirmed = false,
+            //        TwoFactorEnabled = false,
+            //        LockoutEnabled = false,
+            //        AccessFailedCount = 0,
+            //    },
+            //    new User
+            //    {
+            //        Id = "59d917ae-6c68-4852-8b5e-cdf78b79be4f",
+            //        UserName = "ahmet",
+            //        NormalizedUserName = "AHMET",
+            //        Email = "ahmet@example.com",
+            //        NormalizedEmail = "AHMET@EXAMPLE.COM",
+            //        EmailConfirmed = false,
+            //        PasswordHash = "hashedpass5",
+            //        SecurityStamp = Guid.NewGuid().ToString(),
+            //        ConcurrencyStamp = Guid.NewGuid().ToString(),
+            //        PhoneNumberConfirmed = false,
+            //        TwoFactorEnabled = false,
+            //        LockoutEnabled = false,
+            //        AccessFailedCount = 0,
+            //    }
+            //);
+            ////modelBuilder.Entity<User>().HasData(
+            ////   new User { Id = "59d917ae-6c68-4852-8b5e-cdf78b79be4f", UserName = "ceyda123", Email = "ceyda@example.com", FullName="Ceyda Kesgin", PasswordHash = "hashedpass1" },
+            ////   new User { Id = "fddf3976-0eb3-4abe-9d01-e18ce5957bed", UserName = "mert_98", Email = "mert@example.com", FullName = "Mert ", PasswordHash = "hashedpass2" },
+            ////   new User { Id = "be7fcc00-4ca6-4603-9456-e389a78de363", UserName = "elifkaya", Email = "elif@example.com", FullName = "Elif Kaya", PasswordHash = "hashedpass3" },
+            ////   new User { Id = "e72f91b4-e511-47f2-aad6-e79753c3cda1", UserName = "ali", Email = "ali@example.com", FullName = "Ali Doğa", PasswordHash = "hashedpass4" },
+            ////   new User { Id = "4bae5b1b-be95-44c7-8995-8288cb93bd20", UserName = "ahmet", Email = "ahmet@example.com", FullName = "Ahmet Güneş", PasswordHash = "hashedpass5" }
 
 
-            //   );
+            ////   );
 
             //modelBuilder.Entity<Category>().HasData(
             //    new Category { CategoryID = 1, CategoryName = "Yazılım" },
@@ -90,7 +171,7 @@ namespace Repositories
             //        PublishedAt = new DateTime(2024, 6, 5),
             //        UserId = "2",
             //        CategoryId = 2,
-            //        Image = "/images/aspnet-logo.jpg"
+            //        Image = "/images/2.jpeg"
             //    },
             //    new Blog
             //    {
@@ -101,7 +182,7 @@ namespace Repositories
             //        PublishedAt = new DateTime(2024, 6, 8),
             //        UserId = "3",
             //        CategoryId = 4,
-            //        Image = "/images/aspnet-logo.jpg"
+            //        Image = "/images/3.jpeg"
             //    },
             //    new Blog
             //    {
@@ -112,7 +193,7 @@ namespace Repositories
             //        PublishedAt = new DateTime(2024, 6, 8),
             //        UserId = "3",
             //        CategoryId = 4,
-            //        Image = "/images/aspnet-logo.jpg"
+            //        Image = "/images/4.jpeg"
             //    },
             //    new Blog
             //    {
@@ -123,7 +204,7 @@ namespace Repositories
             //        PublishedAt = new DateTime(2024, 6, 8),
             //        UserId = "3",
             //        CategoryId = 4,
-            //        Image = "/images/aspnet-logo.jpg"
+            //        Image = "/images/5.jpeg"
             //    },
             //    new Blog
             //    {
@@ -134,7 +215,7 @@ namespace Repositories
             //        PublishedAt = new DateTime(2024, 6, 8),
             //        UserId = "3",
             //        CategoryId = 4,
-            //        Image = "/images/aspnet-logo.jpg"
+            //        Image = "/images/6.jpeg"
             //    },
             //    new Blog
             //    {
@@ -145,7 +226,7 @@ namespace Repositories
             //        PublishedAt = new DateTime(2024, 6, 8),
             //        UserId = "4",
             //        CategoryId = 2,
-            //        Image = "/images/aspnet-logo.jpg"
+            //        Image = "/images/7.png"
             //    },
             //    new Blog
             //    {
@@ -156,7 +237,7 @@ namespace Repositories
             //        PublishedAt = new DateTime(2024, 6, 8),
             //        UserId = "4",
             //        CategoryId = 5,
-            //        Image = "/images/aspnet-logo.jpg"
+            //        Image = "/images/8.jpeg"
             //    },
             //    new Blog
             //    {
@@ -167,7 +248,7 @@ namespace Repositories
             //        PublishedAt = new DateTime(2024, 6, 8),
             //        UserId = "3",
             //        CategoryId = 6,
-            //        Image = "/images/aspnet-logo.jpg"
+            //        Image = "/images/9.jpeg"
             //    },
             //    new Blog
             //    {
@@ -178,7 +259,7 @@ namespace Repositories
             //        PublishedAt = new DateTime(2024, 6, 8),
             //        UserId = "5",
             //        CategoryId = 5,
-            //        Image = "/images/aspnet-logo.jpg"
+            //        Image = "/images/10.jpeg"
             //    },
             //    new Blog
             //    {
@@ -189,7 +270,7 @@ namespace Repositories
             //        PublishedAt = new DateTime(2024, 6, 8),
             //        UserId = "5",
             //        CategoryId = 7,
-            //        Image = "/images/aspnet-logo.jpg"
+            //        Image = "/images/11.jpeg"
             //    }
 
             //);

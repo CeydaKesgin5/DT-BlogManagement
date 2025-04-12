@@ -12,5 +12,9 @@ namespace Entities.DTOs
 
         [Required(ErrorMessage = "Password is required")]
         public String? Password { get; init; }
+
+
+        [Required(ErrorMessage = "FullName is required")]
+        public String? FullName { get; init; }
     }
 }
