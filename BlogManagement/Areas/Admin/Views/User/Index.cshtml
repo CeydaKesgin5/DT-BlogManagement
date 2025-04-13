@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Entities.Models 
-@model IEnumerable<User>
+@model IEnumerable<IdentityUser>
 
 
 
@@ -9,18 +9,17 @@
         <tr>
             <th>UserId</th>
             <th>Username</th>
-            <th>Full Name</th>
+           
             <th>Email</th>
             <th>Operations</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (User user in Model)
+        @foreach (IdentityUser user in Model)
         {
             <tr>
                 <td>@user.Id</td>
                 <td>@user.UserName</td>
-                <td>@user.FullName</td>
                 <td>@user.Email</td>
 
                 <td>

@@ -11,5 +11,7 @@ namespace Services.Contracts
         Task<IdentityUser> GetOneUser(string userName);
         Task<IdentityResult> CreateUser(UserDtoForCreation user);
         Task<IdentityResult> DeleteOneUser(string userName);
+        Task<UserDtoForUpdate> GetOneUserForUpdate(string userName);
+
     }
 }

@@ -9,5 +9,6 @@
 
         ICommentService CommentService { get; }
         IUserService UserService { get; }
+
     }
 }

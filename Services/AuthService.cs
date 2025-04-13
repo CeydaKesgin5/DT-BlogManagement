@@ -57,5 +57,14 @@ namespace Services
                 return user;
             throw new Exception("User could not be found.");
         }
+
+        public async Task<UserDtoForUpdate> GetOneUserForUpdate(string userName)
+        {
+            var user = await GetOneUser(userName);
+            var userDto = _mapper.Map<UserDtoForUpdate>(user);
+            userDto.Roles = new HashSet<string>(Roles.Select(r => r.Name).ToList());
+            userDto.UserRoles = new HashSet<string>(await _userManager.GetRolesAsync(user));
+            return userDto;
+        }
     }
 }

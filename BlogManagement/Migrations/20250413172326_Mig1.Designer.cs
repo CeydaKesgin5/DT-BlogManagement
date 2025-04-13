@@ -12,8 +12,8 @@ using Repositories;
 namespace BlogManagement.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250413053158__mig1")]
-    partial class _mig1
+    [Migration("20250413172326_Mig1")]
+    partial class Mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
