@@ -11,23 +11,12 @@
                     <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Home Page</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Users</a>
-                </li>
-
                <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
                </li>
-              
 
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Account" asp-action="Register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Account" asp-action="AccessDenied">AccessDenied</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Index">Admin Index</a>
+                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
                 </li>
                
             </ul>
@@ -36,6 +25,9 @@
             <ul class="navbar-nav">
                 @if (User.Identity.IsAuthenticated) // Kullanıcı giriş yaptı mı?
                 {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">User Page</a>
+                    </li>
                     <li class="nav-item">
                         <a target="_blank" class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">
                             <i class="fa fa-solid fa-search">
