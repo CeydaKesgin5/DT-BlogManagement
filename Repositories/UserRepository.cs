@@ -15,9 +15,9 @@ namespace Repositories
 
         }
 
-        public void CreateOneUser(User User) => Create(User);
+        public void CreateOneUser(User user) => Create(user);
 
-        public void DeleteOneUser(User User) => Remove(User);
+        public void DeleteOneUser(User user) => Remove(user);
 
         public IQueryable<User> GetAllUsers(bool trackChanges) => FindAll(trackChanges);
 

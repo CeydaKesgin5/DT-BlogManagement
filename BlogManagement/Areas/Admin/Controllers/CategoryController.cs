@@ -48,6 +48,7 @@ namespace BlogManagement.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Delete([FromRoute(Name = "id")] int id)
         {
+
             _service.CategoryService.DeleteOneCategory(id);
 
             TempData["danger"] = $"Başarıyla silindi!";
