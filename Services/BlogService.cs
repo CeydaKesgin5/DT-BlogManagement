@@ -64,50 +64,6 @@ namespace Services
             return  _manager.Blog.FindAll(false).OrderByDescending(b => b.PublishedAt).ToList();
         }
     }
-    //private readonly IMapper _mapper;
-    //private readonly IBlogRepository _blogRepository;
-    //public BlogService(IMapper mapper, IBlogRepository blogRepository)
-    //{
-    //    _mapper = mapper;
-    //    _blogRepository = blogRepository;
-    //}
-
-    //public async Task CreateBlogAsync(CreateBlogDto blogDto)
-    //{
-    //    var blog = _mapper.Map<Blog>(blogDto);
-
-    //    await _blogRepository.AddAsync(blog);
-    //}
-
-    //public async Task DeleteOneBlogAsync(int id)
-    //{
-    //    await _blogRepository.DeleteAsync(id);
-    //}
-
-    //public async Task<List<Blog>> GetAllBlogs()
-    //{
-    //    var blogs = await _blogRepository.GetAllAsync();
-    //    return blogs.ToList();
-    //}
-
-    //public async Task<Blog> GetByIdBlogAsync(int id)
-    //{
-    //    return await _blogRepository.GetByIdAsync(id);
-
-
-    //}
-
-    //public async Task UpdateBlogAsync(UpdateBlogDto blogDto)
-    //{
-    //    var blog = _mapper.Map<Blog>(blogDto);
-
-    //    await _blogRepository.UpdateAsync(blog);
-    //}
-
-    //Task<Category> IBlogService.GetByIdBlogAsync(int id)
-    //{
-    //    throw new NotImplementedException();
-    //}
-
+    
 }
 

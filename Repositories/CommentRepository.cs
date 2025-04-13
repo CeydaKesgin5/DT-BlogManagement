@@ -1,11 +1,6 @@
 ﻿using Entities.Models;
 using Repositories.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Repositories
 {
@@ -21,6 +16,12 @@ namespace Repositories
         public void DeleteOneComment(Comment comment) => Remove(comment);
 
         public IQueryable<Comment> GetAllComments(bool trackChanges) => FindAll(trackChanges);
+
+        public IEnumerable<Comment> GetCommentsByBlog(int blogId, bool trackChanges)
+        {
+            return FindAllByCondition(b => b.BlogId == blogId, trackChanges).ToList();
+
+        }
 
         // Interface
         public Comment? GetOneComment(int id, bool trackChanges)

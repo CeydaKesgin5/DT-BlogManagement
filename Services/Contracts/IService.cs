@@ -8,5 +8,6 @@
         IAuthService AuthService { get; }
 
         ICommentService CommentService { get; }
+        IUserService UserService { get; }
     }
 }

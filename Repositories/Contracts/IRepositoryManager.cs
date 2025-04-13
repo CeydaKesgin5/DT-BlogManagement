@@ -6,6 +6,8 @@
         ICategoryRepository Category { get; }
 
         ICommentRepository Comment { get; }
+
+        IUserRepository User { get; }
         void Save();
     }
 }

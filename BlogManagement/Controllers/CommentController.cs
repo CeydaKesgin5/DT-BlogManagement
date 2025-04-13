@@ -48,6 +48,8 @@ namespace CommentManagement.Controllers
 
             return RedirectToAction("Get", "Blog", new { id = comment.BlogId });
         }
+
+
         [Authorize]
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {

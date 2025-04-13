@@ -34,6 +34,11 @@ namespace Services
             return _manager.Comment.GetAllComments(trackChanges);
         }
 
+        public IEnumerable<Comment> GetCommentsByBlog(int blogId, bool trackChanges)
+        {
+            return _manager.Comment.GetCommentsByBlog(blogId, trackChanges);
+        }
+
         public Comment? GetOneComment(int id, bool trackChanges)
         {
             var comment = _manager.Comment.GetOneComment(id, trackChanges);

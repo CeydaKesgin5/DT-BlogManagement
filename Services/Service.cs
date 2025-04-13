@@ -8,15 +8,18 @@ namespace Services
         private readonly ICategoryService _categoryService;
         private readonly IAuthService _authService;
         private readonly ICommentService _commentService;
+        private readonly IUserService _userService;
         public Service(IBlogService blogService,
         ICategoryService categoryService,
         IAuthService authService,
-        ICommentService commentService)
+        ICommentService commentService,
+        IUserService userService)
         {
             _service = blogService;
             _categoryService = categoryService;
             _authService = authService;
             _commentService = commentService;
+            _userService = userService;
         }
 
         public IBlogService BlogService => _service;
@@ -25,5 +28,7 @@ namespace Services
         public IAuthService AuthService => _authService;
 
         public ICommentService CommentService => _commentService;
+
+        public IUserService UserService => _userService;    
     }
 }

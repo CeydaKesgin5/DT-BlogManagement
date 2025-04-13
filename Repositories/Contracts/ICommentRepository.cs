@@ -1,9 +1,5 @@
 ﻿using Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Repositories.Contracts
 {
@@ -12,6 +8,8 @@ namespace Repositories.Contracts
         IQueryable<Comment> GetAllComments(bool trackChanges);
         Comment? GetOneComment(int id, bool trackChanges);
         void CreateOneComment(Comment Comment);
-        void DeleteOneComment(Comment blog);
+        void DeleteOneComment(Comment comment);
+        public IEnumerable<Comment> GetCommentsByBlog(int blogId, bool trackChanges);
+
     }
 }

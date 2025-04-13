@@ -12,8 +12,8 @@
             <th>Image</th>
             <th>Title</th>
             <th>Published At</th>
-            <th>Operations</th>
-        </tr>
+            <th></th>
+</tr>
     </thead>
     <tbody>
         @foreach (Blog blog in Model)
@@ -21,25 +21,33 @@
             <tr>
 
                 <td>
-                    <img class="border border-light rounded" src="@blog?.Image"
-                         width="100" />
+                    <a asp-action="Get" asp-route-id="@blog.Id">
+                        <img class="border border-light rounded" src="@blog?.Image" 
+                             width="100" />
+                    </a>
+                   
                 </td>
-                <td class="text-left" style="font-size: 20px;">
-                    @blog.Title
+               
+                <td class="text-left" style="font-size: 20px;" >
+                    <a asp-controller="Blog" asp-action="Get" asp-route-id="@blog.Id">
+                        @blog.Title
+
+                    </a>
                     <br />
                     <p class=".text-secondary" style="font-size: 15px">@blog.Author</p>
                 </td>
 
                 <td>@blog.PublishedAt.ToString("d")</td>
+                @if (User.Identity.IsAuthenticated &&
+               blog.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
+                {
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             &#x22EE; <!-- Bu üç nokta dikey (⋮) simgesidir -->
                         </button>
                         <ul class="dropdown-menu">
-                            @if (User.Identity.IsAuthenticated &&
-                           blog.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
-                            {
+                        
                                 <li>
                                     <a class="dropdown-item text-warning" asp-action="Update" asp-route-id="@blog.Id">
                                         <i class="fa fa-edit"></i> Edit
@@ -50,16 +58,22 @@
                                         <i class="fa fa-trash"></i> Delete
                                     </a>
                                 </li>
-                            }
+                                <li>
+                                    <a class="dropdown-item text-info" asp-action="Get" asp-route-id="@blog.Id" target="_blank">
+                                        <i class="fa fa-eye"></i> View
+                                    </a>
+                                </li>
+                           
 
-                            <li>
-                                <a class="dropdown-item text-info" asp-action="Get" asp-route-id="@blog.Id" target="_blank">
-                                    <i class="fa fa-eye"></i> View
-                                </a>
-                            </li>
+                           
                         </ul>
-                    </div>
-                </td>
+                        </div>
+
+                    </td>
+                }
+                else{
+                    <td></td>
+                }
             </tr>
         }
     </tbody>

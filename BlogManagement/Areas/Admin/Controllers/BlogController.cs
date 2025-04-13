@@ -1,29 +1,43 @@
 ﻿using Entities.Models;
-using Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Repositories;
+using Services;
+using Services.Contracts;
 using System.Security.Claims;
 
-namespace BlogManagement.Controllers
+namespace BlogManagement.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class BlogController : Controller
     {
         private readonly IService _service;
-        private readonly IBlogService _blogService;
-        public BlogController(IService service, IBlogService blogService)
+        public BlogController(IService service)
         {
             _service = service;
-            _blogService = blogService;
         }
 
-        [AllowAnonymous]
+
+        [Authorize]
+
+        public IActionResult Index()
+        {
+
+            var allBlogs = _service.BlogService.GetAllBlogs(false);
+            return View(allBlogs);
+
+        }
+        [Authorize]
+
+
         public IActionResult Get([FromRoute(Name = "id")] int id)
         {
-            var model = _blogService.GetOneBlog(id, false);
+            var model = _service.BlogService.GetOneBlog(id, false);
 
             var comments = _service.CommentService.GetCommentsByBlog(id, false); // Bloga ait yorumlar
+
             if (comments == null)
             {
                 ViewBag.CommentCount = 0;
@@ -31,49 +45,15 @@ namespace BlogManagement.Controllers
             else
             {
                 ViewBag.CommentCount = model.Comments.Count;
-                model.Comments = comments.ToList();
-
             }
 
             return View(model);
         }
 
-
-    
-
-        [AllowAnonymous]
-
-        public IActionResult Index(int? categoryId, string sortOrder)
-        {
-            ViewBag.SortOrder = sortOrder;
-
-            var allBlogs = _service.BlogService.GetAllBlogs(false);
-
-            
-            if (categoryId != null)
-            {
-                var blogsByCategory = _service.BlogService.GetBlogsByCategory(categoryId.Value, false);
-                var category = _service.CategoryService.GetOneCategory((int)categoryId, false);
-                ViewBag.CategoryId = categoryId;
-                ViewBag.CategoryName = category?.CategoryName;
-                return View(blogsByCategory);
-
-            }
-            if (sortOrder == "date")
-            {
-                allBlogs = allBlogs.OrderByDescending(b => b.PublishedAt).ToList();
-            }
-
-
-            return View(allBlogs);
-
-        }
-
-
         [Authorize]
         public IActionResult Create()
         {
-           
+
             ViewBag.Categories = GetCategoriesSelectList();
             return View();
         }
@@ -89,7 +69,7 @@ namespace BlogManagement.Controllers
                     Text = x.CategoryName
                 }).ToList();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -105,21 +85,12 @@ namespace BlogManagement.Controllers
             return View();
         }
 
-
-
+      
 
         [Authorize]
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
             var model = _service.BlogService.GetOneBlog(id, false);
-
-            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (model.UserId != currentUserId)
-            {
-                return RedirectToAction("AccessDenied", "Account");
-            }
-           
 
             return View(model);
         }
@@ -132,7 +103,7 @@ namespace BlogManagement.Controllers
 
             if (ModelState.IsValid)
             {
-                _service.BlogService.UpdateOneBlog(model); 
+                _service.BlogService.UpdateOneBlog(model);
                 TempData["success"] = $"Başarıyla güncellendi! {model}";
                 return RedirectToAction("Index");
             }
@@ -145,10 +116,13 @@ namespace BlogManagement.Controllers
         public IActionResult Delete([FromRoute(Name = "id")] int id)
         {
             _service.BlogService.DeleteOneBlog(id);
+       
             TempData["danger"] = $"Başarıyla silindi!";
 
             return RedirectToAction("Index");
         }
+
+
 
 
     }

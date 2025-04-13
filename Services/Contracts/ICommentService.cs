@@ -10,7 +10,9 @@ namespace Services.Contracts
         void UpdateOneComment(Comment comment);
         void DeleteOneComment(int id);
 
+        public IEnumerable<Comment> GetCommentsByBlog(int blogId, bool trackChanges);
 
-     
+
+
     }
 }

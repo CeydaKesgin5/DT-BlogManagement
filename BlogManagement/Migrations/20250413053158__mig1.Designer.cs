@@ -12,8 +12,8 @@ using Repositories;
 namespace BlogManagement.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250409104434_mig_2")]
-    partial class mig_2
+    [Migration("20250413053158__mig1")]
+    partial class _mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,6 +55,7 @@ namespace BlogManagement.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -106,7 +107,6 @@ namespace BlogManagement.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserName")
@@ -352,7 +352,8 @@ namespace BlogManagement.Migrations
                     b.HasOne("Entities.Models.User", "User")
                         .WithMany("Blogs")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Category");
 
@@ -370,8 +371,7 @@ namespace BlogManagement.Migrations
                     b.HasOne("Entities.Models.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Blog");
 

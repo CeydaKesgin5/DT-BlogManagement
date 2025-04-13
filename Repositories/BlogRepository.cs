@@ -1,8 +1,5 @@
-﻿
-using Repositories.Contracts;
-using Microsoft.EntityFrameworkCore;
+﻿using Repositories.Contracts;
 using Entities.Models;
-using System.Linq;
 
 namespace Repositories
 {
@@ -33,43 +30,5 @@ namespace Repositories
 
 
     }
-    //    private readonly AppDbContext _context;
-
-    //    public BlogRepository(AppDbContext context) : base(context)
-    //    {
-    //    }
-
-    //    public async Task<IEnumerable<Blog>> GetAllBlogsAsync()
-    //    {
-    //        return await _context.Blogs.Include(b => b.User).Include(b => b.Category).ToListAsync();
-    //    }
-
-    //    public async Task<Blog> GetBlogByIdAsync(int id)
-    //    {
-    //        return await _context.Blogs.Include(b => b.User).Include(b => b.Category)
-    //            .FirstOrDefaultAsync(b => b.Id == id);
-    //    }
-
-    //    public async Task CreateBlogAsync(Blog blog)
-    //    {
-    //        await _context.Blogs.AddAsync(blog);
-    //        await _context.SaveChangesAsync();
-    //    }
-
-    //    public async Task UpdateBlogAsync(Blog blog)
-    //    {
-    //        _context.Blogs.Update(blog);
-    //        await _context.SaveChangesAsync();
-    //    }
-
-    //    public async Task DeleteBlogAsync(int id)
-    //    {
-    //        var blog = await GetBlogByIdAsync(id);
-    //        if (blog != null)
-    //        {
-    //            _context.Blogs.Remove(blog);
-    //            await _context.SaveChangesAsync();
-    //        }
-    //    }
-
+   
 }

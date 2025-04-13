@@ -1,0 +1,64 @@
+﻿@model Entities.Models.Blog
+
+<div class="text-center">
+    <div class="display-6"> Create Blog</div>
+</div>
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="Category" />
+    <div class="form-group my-3">
+        <label asp-for="CategoryId"></label>
+        <select class="form-control"
+                asp-for="CategoryId"
+                asp-items="@ViewBag.Categories">
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+
+
+    <div class="form-group my-3">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="Content"></label>
+        <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="Author"></label>
+        <input asp-for="Author" class="form-control" />
+        <span asp-validation-for="Author" class="text-danger"></span>
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="Image"></label>
+        <input name="file" type="file" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="UserId" value="@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value" />
+    <input type="hidden" asp-for="PublishedAt" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" />
+
+    <input type="hidden" asp-for="CategoryId" name="Category" value="@Model?.Category" />
+    <input type="hidden" asp-for="UserId" name="User" value="@Model?.User" />
+
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i>
+                Save
+            </button>
+            <a asp-action="Index" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                Blogs
+            </a>
+        </div>
+    </div>
+</form>
+

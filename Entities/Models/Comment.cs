@@ -14,7 +14,7 @@ namespace Entities.Models
         [Required(ErrorMessage = "Comment Text is required. ")]
         public string CommentText { get; set; }
 
-        public string UserId { get; set; }      
+        public string? UserId { get; set; }      
         public User? User { get; set; }
 
         public int BlogId { get; set; }
