@@ -6,5 +6,10 @@ namespace Services.Contracts
     {
         IEnumerable<Category> GetAllCategories(bool trackChanges);
         Category? GetOneCategory(int id, bool trackChanges);
+        void CreateCategory(Category category);
+        void DeleteOneCategory(int id);
+
+        public IEnumerable<Category> GetCategoriesWithBlogs(bool trackChanges);
+
     }
 }
