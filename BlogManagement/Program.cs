@@ -61,7 +61,6 @@ builder.Services.AddScoped<IBlogRepository,BlogRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
 builder.Services.AddScoped<IBlogService, BlogService>();
@@ -69,7 +68,6 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IService, Service>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
-builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 

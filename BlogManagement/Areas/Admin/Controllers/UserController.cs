@@ -54,6 +54,27 @@ namespace BlogManagement.Areas.Admin.Controllers
             return View(user);
         }
 
-    
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update([FromForm] UserDtoForUpdate userDto)
+        {
+            if (ModelState.IsValid)
+            {
+                await _manager.AuthService.Update(userDto);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        [HttpGet]
+       
+        public async Task<IActionResult> Delete([FromRoute(Name = "id")] string id)
+        {
+            await _manager.AuthService.DeleteOneUser(id);
+
+            TempData["danger"] = $"Başarıyla silindi!";
+
+            return RedirectToAction("Index");
+        }
     }
 }

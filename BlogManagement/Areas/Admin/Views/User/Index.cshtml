@@ -29,7 +29,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item text-warning" asp-action="Edit" asp-route-id="@user.Id">
+                                <a class="dropdown-item text-warning" asp-action="Update" asp-route-id="@user.Id">
                                     <i class="fa fa-edit"></i> Edit
                                 </a>
                             </li>
@@ -38,11 +38,7 @@
                                     <i class="fa fa-trash"></i> Delete
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item text-info" asp-action="Details" asp-route-id="@user.Id" target="_blank">
-                                    <i class="fa fa-eye"></i> View
-                                </a>
-                            </li>
+                            
                         </ul>
                     </div>
                 </td>
