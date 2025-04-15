@@ -14,9 +14,11 @@ namespace BlogManagement.Areas.Admin.Controllers
     public class BlogController : Controller
     {
         private readonly IService _service;
-        public BlogController(IService service)
+        private readonly IBlogService _blogService;
+        public BlogController(IService service, IBlogService blogService)
         {
             _service = service;
+            _blogService = blogService;
         }
 
 
@@ -34,10 +36,9 @@ namespace BlogManagement.Areas.Admin.Controllers
 
         public IActionResult Get([FromRoute(Name = "id")] int id)
         {
-            var model = _service.BlogService.GetOneBlog(id, false);
+            var model = _blogService.GetOneBlog(id, false);
 
             var comments = _service.CommentService.GetCommentsByBlog(id, false); // Bloga ait yorumlar
-
             if (comments == null)
             {
                 ViewBag.CommentCount = 0;
@@ -45,6 +46,8 @@ namespace BlogManagement.Areas.Admin.Controllers
             else
             {
                 ViewBag.CommentCount = model.Comments.Count;
+                model.Comments = comments.ToList();
+
             }
 
             return View(model);

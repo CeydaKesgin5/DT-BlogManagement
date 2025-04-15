@@ -1,0 +1,92 @@
+﻿@model Entities.Models.Blog
+
+
+
+<div class="container mt-4">
+    <div class="card shadow rounded">
+        <div class="card-body">
+
+
+
+<div class="container mt-4">
+  
+           
+
+    <div class="col-md-5 mb-3 container-fluid p-0">
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            <img src="@Model.Image" class="img-fluid w-100" style="object-fit: cover; width: 100%; height: 100%;" alt="Blog Image" />
+        }
+    </div>
+    <h2 class="text-primary text-center" >@Model.Title</h2>
+
+    <p class="text-muted" style="font-size:20px;">
+        <span class="d-flex justify-content-between w-100">
+            <span> @Model.Author</span>
+            <span> @Model.PublishedAt.ToString("dd MMMM yyyy")</span>
+        </span>
+    </p>
+    
+</div>
+
+
+        <p class="card-text fs-5">
+            @Html.Raw(Model.Content)
+        </p>
+
+        <div class="mt-4">
+            <h4 class="text-primary">Comments</h4>
+
+            @if (Model.Comments != null && Model.Comments.Any())
+            {
+                <ul class="list-group">
+                @foreach (var comment in Model.Comments)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>@comment.UserName</strong>
+                            <p>@comment.CommentText</p>
+                        </div>
+                   
+                        <form asp-controller="Comment" asp-action="Delete" method="get" style="display:inline;">
+                            <input type="hidden" name="id" value="@comment.CommentID" />
+                            <button type="submit" asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.CommentID" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    
+                    </li>
+                }
+                    </ul>
+            }
+            else
+            {
+                    <p>No comments available for this blog.</p>
+            }
+        </div>
+
+        <a asp-action="Index" class="btn btn-outline-secondary mt-3">
+            <i class="fa fa-arrow-left"></i> Back to Blogs
+        </a>
+
+            
+        <div class="mt-4">
+            <h4 class="text-primary">Add a Comment</h4>
+
+            <form asp-action="AddComment" method="post">
+                           
+                <div class="form-group">
+                    <label for="CommentText">Comment:</label>
+                    <textarea class="form-control" id="CommentText" name="CommentText" rows="4" required></textarea>
+                </div>
+                <input type="hidden" asp-for="UserId" value="@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value" />
+                <input type="hidden" class="form-control" id="Username" name="Username" value="@User.Identity.Name" required />
+
+
+                <input type="hidden" name="BlogId" value="@Model.Id" />
+                <button type="submit" asp-controller="Comment" asp-action="Create" class="btn btn-primary mt-2">Publish</button>
+            </form>
+        </div>
+            
+
+    </div>
+    </div>
+</div>

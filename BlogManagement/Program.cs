@@ -12,11 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(typeof(Program));
 
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddCookie(options =>
-        {
-            options.LoginPath = "/Account/Login"; // Giriþ sayfasý
-        });
+//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+//        .AddCookie(options =>
+//        {
+//            options.LoginPath = "/Account/Login"; // Giriþ sayfasý
+//            options.AccessDeniedPath = "/Account/AccessDenied"; // Yetki yoksa yönlendirme
+//            options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+//        });
 
 builder.Services.AddAuthorization(options =>
 {
@@ -24,14 +26,6 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddControllersWithViews();
-
-
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
-
-
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -43,6 +37,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/account/login";          // Giriþ sayfasý
     options.AccessDeniedPath = "/account/accessdenied";  // Yetki yoksa yönlendirme
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+
 });
 
 
@@ -73,23 +69,16 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    //app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
 
-
-app.UseAuthentication(); // Kimlik doðrulama
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapStaticAssets();
-
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Blog}/{action=Index}/{id?}")
-//    .WithStaticAssets();
 
 
 app.MapAreaControllerRoute(
