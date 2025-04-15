@@ -1,6 +1,37 @@
-﻿namespace BlogManagement.Areas.Admin.Controllers
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Services;
+using Services.Contracts;
+
+namespace BlogManagement.Areas.Admin.Controllers
 {
-    public class CommentController
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+    public class CommentController: Controller
     {
+        private readonly IService _commentService;
+
+        public CommentController(IService commentService)
+        {
+            _commentService = commentService;
+        }
+
+    
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Delete([FromRoute(Name = "id")] int id)
+        {
+
+            var comment = _commentService.CommentService.GetOneComment(id, false); // Yorum ID'sine göre yorumu bul
+            if (comment != null)
+            {
+                _commentService.CommentService.DeleteOneComment(id);
+
+            }
+
+            return RedirectToAction("Get", "Blog", new { id = comment.BlogId });
+
+        }
     }
 }

@@ -6,9 +6,9 @@
     <div class="card shadow rounded">
         <div class="card-body">
 
-            
+
             @await Html.PartialAsync("_BlogDetail", Model)
-            
+
 
             <p class="card-text fs-5">
                 @Html.Raw(Model.Content)
@@ -21,28 +21,28 @@
 
                 @if (Model.Comments != null && Model.Comments.Any())
                 {
-                    <ul class="list-group">
+                        <ul class="list-group">
                         @foreach (var comment in Model.Comments)
                         {
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <strong>@comment.UserName</strong>
-                                    <p>@comment.CommentText</p>
-                                </div>
-                                @if (comment.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value) // Kullanıcı ID'sine göre kontrol
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>@comment.UserName</strong>
+                                        <p>@comment.CommentText</p>
+                                    </div>
+                                @if (comment.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value || User.IsInRole("Admin")) // Kullanıcı ID'sine göre kontrol
                                 {
                                     <form asp-controller="Comment" asp-action="Delete" method="get" style="display:inline;">
                                         <input type="hidden" name="id" value="@comment.CommentID" />
-                                        <button type="submit" asp-route-id="@comment.CommentID" class="btn btn-danger btn-sm">Delete</button> <!-- Silme butonu -->
+                                        <button type="submit" asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.CommentID" class="btn btn-danger btn-sm">Delete</button> <!-- Silme butonu -->
                                     </form>
                                 }
-                            </li>
+                                </li>
                         }
-                    </ul>
+                        </ul>
                 }
                 else
                 {
-                    <p>No comments available for this blog.</p>
+                        <p>No comments available for this blog.</p>
                 }
             </div>
 
@@ -53,38 +53,35 @@
             <a asp-action="Index" class="btn btn-outline-secondary mt-3">
                 <i class="fa fa-arrow-left"></i> Back to Blogs
             </a>
-            
-            @if(User.Identity.IsAuthenticated){
-                <div class="mt-4">
-                    <h4 class="text-primary">Add a Comment</h4>
 
-                    <form asp-action="AddComment" method="post">
-                        <div class="form-group">
-                            <label for="UserName">Name:</label>
-                            <input type="text" class="form-control" id="UserName" name="UserName" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="Mail">Email:</label>
-                            <input type="email" class="form-control" id="Mail" name="Mail" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="CommentText">Comment:</label>
-                            <textarea class="form-control" id="CommentText" name="CommentText" rows="4" required></textarea>
-                        </div>
-                        <input type="hidden" asp-for="UserId" value="@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value" />
+            @if (User.Identity.IsAuthenticated)
+            {
+                    <div class="mt-4">
+                        <h4 class="text-primary">Add a Comment</h4>
 
-                        <input type="hidden" name="BlogId" value="@Model.Id" />
-                        <button type="submit" asp-controller="Comment" asp-action="Create" class="btn btn-primary mt-2">Publish</button>
-                    </form>
-                </div>
+                        <form asp-action="AddComment" method="post">
+                           
+                            <div class="form-group">
+                                <label for="CommentText">Comment:</label>
+                                <textarea class="form-control" id="CommentText" name="CommentText" rows="4" required></textarea>
+                            </div>
+                            <input type="hidden" asp-for="UserId" value="@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value" />
+                            <input type="hidden" class="form-control" id="Username" name="Username" value="@User.Identity.Name" required />
+
+
+                            <input type="hidden" name="BlogId" value="@Model.Id" />
+                            <button type="submit" asp-controller="Comment" asp-action="Create" class="btn btn-primary mt-2">Publish</button>
+                        </form>
+                    </div>
             }
-            else{
+            else
+            {
 
-                <a asp-controller="Account" asp-action="Login" class="btn btn-outline-secondary mt-3 .text-primary">
-                    <i class="fa alert-primary"></i> Add 
-                </a>
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-outline-secondary mt-3 .text-primary">
+                        <i class="fa alert-primary"></i> Add Comment
+                    </a>
             }
-            
+
         </div>
     </div>
 </div>

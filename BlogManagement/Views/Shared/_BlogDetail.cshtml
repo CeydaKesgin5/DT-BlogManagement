@@ -2,20 +2,21 @@
 
 <div class="container mt-4">
   
-            <h2 class="text-primary text-center" style="color: black">@Model.Title</h2>
+           
 
-            <p class="text-muted" style="font-size: 15px;">
-                <strong>Author:</strong> @Model.Author
-                <br />
-                <strong>Published At:</strong> @Model.PublishedAt.ToString("dd MMMM yyyy")
-                <br />
-            </p>
+    <div class="col-md-5 mb-3 container-fluid p-0">
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            <img src="@Model.Image" class="img-fluid w-100" style="object-fit: cover; width: 100%; height: 100%;" alt="Blog Image" />
+        }
+    </div>
+    <h2 class="text-primary text-center" >@Model.Title</h2>
 
-            <div class="col-md-5 mb-3">
-                @if (!string.IsNullOrEmpty(Model.Image))
-                {
-                    <img src="@Model.Image" alt="Blog Image" class="img-fluid rounded justify-content-center" />
-                }
-            </div>
+    <p class="text-muted" style="font-size:20px;">
+        <span class="d-flex justify-content-between w-100">
+            <span> @Model.Author</span>
+            <span> @Model.PublishedAt.ToString("dd MMMM yyyy")</span>
+        </span>
+    </p>
     
 </div>

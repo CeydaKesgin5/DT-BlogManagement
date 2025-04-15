@@ -12,15 +12,12 @@ namespace CommentManagement.Controllers
     [Authorize]
     public class CommentController : Controller
     {
-        private readonly AppDbContext _context; // Veritabanı bağlamı
-        private readonly IBlogService _blogService; // Blog
+ 
         private readonly IService _commentService;
 
        
-        public CommentController(AppDbContext context, IBlogService blogService, IService commentService)
+        public CommentController(IService commentService)
         {
-            _context = context;
-            _blogService = blogService;
             _commentService = commentService;
 
         }
@@ -42,9 +39,10 @@ namespace CommentManagement.Controllers
             if (ModelState.IsValid)
             {
                 _commentService.CommentService.CreateComment(comment);
+                TempData["success"] = $"Yorumunuz başarıyla eklendi!";
+
                 return RedirectToAction("Get", "Blog", new { id = comment.BlogId });
             }
-            TempData["success"] = $"Yorumunuz başarıyla eklendi!";
 
             return RedirectToAction("Get", "Blog", new { id = comment.BlogId });
         }
@@ -64,7 +62,7 @@ namespace CommentManagement.Controllers
         public IActionResult Delete([FromRoute(Name = "id")] int id)
         {
 
-            var comment = _context.Comments.Find(id); // Yorum ID'sine göre yorumu bul
+            var comment = _commentService.CommentService.GetOneComment(id,false); // Yorum ID'sine göre yorumu bul
             if (comment != null)
             {
                 _commentService.CommentService.DeleteOneComment(id);
