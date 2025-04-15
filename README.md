@@ -1,6 +1,6 @@
 # DT-BlogManagement
 
-Bu proje, Doğuş Teknoloji Bootcamp kapsamında geliştirilmiştir. Proje sürecinde **ASP.NET Core MVC, Entity Framework Core, Razor Pages, SOLID prensipleri** ve modern web teknolojileri kullanılmıştır.
+Bu proje, Doğuş Teknoloji Bootcamp kapsamında geliştirilmiştir. Proje sürecinde **ASP.NET Core MVC, Entity Framework Core, Razor Pages, SOLID prensipleri** ve modern web teknolojileri kullanılmıştır. IService, IRepository gibi interface’ler üzerinden uygulama loosely coupled hale getirilmiştir.
 
 ## 🔍 Proje Özeti
 
@@ -39,7 +39,9 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 - Model Validations
 
 ### Ekstra Özellikler
-- Area / Admin Panel: User bilgilerini listeler, siler. Blog yazılarına ve kategorilere detaylı erişim sağlar, CRUD işlemlerini gerçekleştirir.
+- **Area / Admin Panel:**
+  - User bilgilerini listeler, siler.
+  - Blog yazılarına ve kategorilere detaylı erişim sağlar, CRUD işlemlerini gerçekleştirir.
 - Bloglar yayınlanma tarihine göre sıralama yapılabilir.
 - **Notification:** Kullanıcılara belirli işlemler sonrasında sistem bildirimleri gösterilir.
 - Seed Data
@@ -60,7 +62,9 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 - Repository Pattern
 - Microservice Architecture
 - ASP.NET Core Identity
-- AutoMapper 
+- AutoMapper
+- View Component
+- ViewModel
 
 
 
