@@ -1,6 +1,6 @@
 # DT-BlogManagement
 
-Bu proje, Doğuş Teknoloji Bootcamp kapsamında geliştirilmiştir. Proje sürecinde ASP.NET Core MVC, Entity Framework Core, Razor Pages, SOLID prensipleri ve modern web teknolojileri kullanılmıştır.
+Bu proje, Doğuş Teknoloji Bootcamp kapsamında geliştirilmiştir. Proje sürecinde **ASP.NET Core MVC, Entity Framework Core, Razor Pages, SOLID prensipleri** ve modern web teknolojileri kullanılmıştır.
 
 ## 🔍 Proje Özeti
 
@@ -10,19 +10,19 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 
 ### Kullanıcı Yönetimi
 - Kullanıcı Kayıt / Giriş / Çıkış
-- Cookie Authentication
+- **Cookie Authentication**
 - Yetkilendirme (sadece giriş yapan kullanıcılar içerik oluşturabilir)
 - Admin User, Blog, Category hakkında detaylı bilgilere ulaşabilir.
 
 ### Blog Yönetimi
 - CRUD (Create, Read, Update, Delete) işlemleri
 - Başlık, içerik, yazar, yayınlanma tarihi ve kategori bilgileri
-- Görsel yükleme
+- **Görsel yükleme**
 - Yayınlanma tarihine göre sıralama yapılabilir
 
 ### Kategori Sistemi
 - Blog yazıları kategorilere ayrılır
-- Kategoriye göre filtreleme yapılabilir
+- **Kategoriye göre filtreleme yapılabilir**
 - Admin Panel'de kategorilere ait detaylı bilgilere ulaşılabilir.
 
 ### Yorum Sistemi
@@ -33,7 +33,7 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 ### Sayfa Yapısı ve Tasarım
 - Bootstrap 5 kullanılarak arayüz
 - Razor Pages ile dinamik sayfalar
-- Layout, Partial View ve Section yapısı
+- **Layout, Partial View ve Section yapısı**
 
 ### Form İşlemleri ve Validations
 - Model Validations
@@ -41,7 +41,7 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 ### Ekstra Özellikler
 - Area / Admin Panel: User bilgilerini listeler, siler. Blog yazılarına ve kategorilere detaylı erişim sağlar, CRUD işlemlerini gerçekleştirir.
 - Bloglar yayınlanma tarihine göre sıralama yapılabilir.
-- Notification: Kullanıcılara belirli işlemler sonrasında sistem bildirimleri gösterilir.
+- **Notification:** Kullanıcılara belirli işlemler sonrasında sistem bildirimleri gösterilir.
 - Seed Data
 
 
