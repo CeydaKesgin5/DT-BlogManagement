@@ -43,6 +43,7 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 - Bloglar yayınlanma tarihine göre sıralama yapılabilir.
 - **Notification:** Kullanıcılara belirli işlemler sonrasında sistem bildirimleri gösterilir.
 - Seed Data
+- TempData ve ViewBag
 
 
 ## Kullanılan Teknolojiler
@@ -59,6 +60,7 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 - Repository Pattern
 - Microservice Architecture
 - ASP.NET Core Identity
+- AutoMapper 
 
 
 
