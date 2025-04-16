@@ -63,6 +63,11 @@ namespace Services
         {
             return  _manager.Blog.FindAll(false).OrderByDescending(b => b.PublishedAt).ToList();
         }
+
+        public IEnumerable<Blog> GetBlogsByUserId(string userId, bool trackChanges)
+        {
+            return _manager.Blog.GetBlogsByUserId(userId, trackChanges);
+        }
     }
     
 }

@@ -1,8 +1,23 @@
-﻿@page "/profile"
+﻿@page "/myblogs"
 @model BlogManagement.Pages.UserModel
 @{
 }
-<h2>My Blogs</h2>
+@{
+    var currentTab = ViewData["ActiveTab"] as string ?? "Profile";
+}
+
+<h2>@Model.User.Identity.Name</h2>
+<br />
+<div class="btn-group">
+    <a href="/myblogs" class="btn btn-light @(currentTab == "Blogs" ? "active" : "")" aria-current="page">My Blogs</a>
+    <a href="/profile" class="btn btn-light @(currentTab == "Info" ? "active" : "")">Profile</a>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<h4>My Blogs</h4>
 
 @if (Model.BlogsByUser == null || !Model.BlogsByUser.Any())
 {

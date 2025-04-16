@@ -39,9 +39,9 @@ namespace Services
             return result;
         }
 
-        public async Task<IdentityResult> DeleteOneUser(string userName)
+        public async Task<IdentityResult> DeleteOneUser(string id)
         {
-            var user = await GetOneUser(userName);
+            var user = await GetOneUser(id);
             return await _userManager.DeleteAsync(user);
         }
 
@@ -50,9 +50,9 @@ namespace Services
             return _userManager.Users.ToList();
         }
 
-        public async Task<IdentityUser> GetOneUser(string userName)
+        public async Task<IdentityUser> GetOneUser(string id)
         {
-            var user = await _userManager.FindByNameAsync(userName);
+            var user = await _userManager.FindByIdAsync(id);
             if (user is not null)
                 return user;
             throw new Exception("User could not be found.");
@@ -65,6 +65,20 @@ namespace Services
             userDto.Roles = new HashSet<string>(Roles.Select(r => r.Name).ToList());
             userDto.UserRoles = new HashSet<string>(await _userManager.GetRolesAsync(user));
             return userDto;
+        }
+
+        public async Task Update(UserDtoForUpdate userDto)
+        {
+            var user = await GetOneUser(userDto.UserName);
+            user.Email = userDto.Email;
+            var result = await _userManager.UpdateAsync(user);
+            if (userDto.Roles.Count > 0)
+            {
+                var userRoles = await _userManager.GetRolesAsync(user);
+                var r1 = await _userManager.RemoveFromRolesAsync(user, userRoles);
+                var r2 = await _userManager.AddToRolesAsync(user, userDto.Roles);
+            }
+            return;
         }
     }
 }

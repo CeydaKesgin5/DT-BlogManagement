@@ -11,7 +11,7 @@ namespace Services
 
         public CommentService(IRepositoryManager manager)
         {
-            _manager = manager;
+            _manager = manager;        
         }
         public void CreateComment(Comment comment)
         {

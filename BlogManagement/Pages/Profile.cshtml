@@ -1,0 +1,39 @@
+﻿@page "/profile"
+@model BlogManagement.Pages.ProfileModel
+@{
+}
+
+@{
+    var currentTab = ViewData["ActiveTab"] as string ?? "Profile";
+}
+
+<h2>@Model.User.Identity.Name</h2>
+<br />
+
+
+<div class="btn-group">
+    <a href="/myblogs" class="btn btn-light @(currentTab == "Blogs" ? "active" : "")" aria-current="page">My Blogs</a>
+    <a href="/profile" class="btn btn-light @(currentTab == "Info" ? "active" : "")">Profile</a>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<h4>Personel Information</h4>
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th>Username</th>
+            <td>@Model.Users.UserName</td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td>@Model?.Users.PhoneNumber</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>@Model.Users.Email</td>
+        </tr>
+    </tbody>
+</table>

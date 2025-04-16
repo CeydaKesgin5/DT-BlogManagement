@@ -19,6 +19,7 @@ namespace BlogManagement.Pages
         }
         public IActionResult OnGet(string userId)
         {
+            ViewData["ActiveTab"] = "Blogs";
             userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             BlogsByUser = _manager.BlogService.GetBlogsByUserId(userId, false);

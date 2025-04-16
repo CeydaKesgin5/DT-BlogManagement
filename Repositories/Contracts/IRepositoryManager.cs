@@ -7,7 +7,6 @@
 
         ICommentRepository Comment { get; }
 
-        IUserRepository User { get; }
         void Save();
     }
 }

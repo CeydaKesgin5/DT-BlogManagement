@@ -28,7 +28,7 @@ namespace Repositories
                .HasOne(b => b.User)
                .WithMany(u => u.Blogs)
                .HasForeignKey(b => b.UserId)
-               .OnDelete(DeleteBehavior.Restrict);
+               .OnDelete(DeleteBehavior.Cascade);
 
             // Blog ve Category ilişkisi
             modelBuilder.Entity<Blog>()

@@ -28,7 +28,11 @@ namespace Repositories
             return FindAllByCondition(b => b.CategoryId == categoryId, trackChanges).ToList();
         }
 
+        public IEnumerable<Blog> GetBlogsByUserId(string userId, bool trackChanges)
+        {
+            return FindAllByCondition(b => b.UserId == userId, trackChanges).ToList();
 
+        }
     }
    
 }

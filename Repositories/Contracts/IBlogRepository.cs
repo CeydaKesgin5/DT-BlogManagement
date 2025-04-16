@@ -10,6 +10,7 @@ namespace Repositories.Contracts
         void DeleteOneBlog(Blog blog);
         public IEnumerable<Blog> GetBlogsByCategory(int categoryId, bool trackChanges);
 
+        public IEnumerable<Blog> GetBlogsByUserId(string userId, bool trackChanges);
 
 
 

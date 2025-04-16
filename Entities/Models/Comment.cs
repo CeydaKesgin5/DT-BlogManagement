@@ -7,9 +7,9 @@ namespace Entities.Models
         [Key]
         public int CommentID { get; set; }
         [StringLength(50)]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         [StringLength(50)]
-        public string Mail { get; set; }
+        public string? Mail { get; set; }
         [StringLength(300)]
         [Required(ErrorMessage = "Comment Text is required. ")]
         public string CommentText { get; set; }
