@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Models
 {
@@ -16,6 +17,7 @@ namespace Entities.Models
         public string Author { get; set; }
         public DateTime PublishedAt { get; set; }
         public string? Image { get; set; }
+
         public int CategoryId {  get; set; }
         public Category? Category { get; set; }
         public string UserId {  get; set; }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using System.Runtime.CompilerServices;
 
 namespace BlogManagement.Controllers
 {
@@ -93,13 +94,31 @@ namespace BlogManagement.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public IActionResult Create([FromForm] Blog blog)
+        //public IActionResult Create([FromForm] Blog blog)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _service.BlogService.CreateBlog(blog);
+        //        TempData["success"] = $"Başarıyla eklendi! {blog}";
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View();
+        //}
+        public async Task<IActionResult> CreateAsync([FromForm] Blog blog, IFormFile file)
         {
             if (ModelState.IsValid)
             {
-                _service.BlogService.CreateBlog(blog);
-                TempData["success"] = $"Başarıyla eklendi! {blog}";
+                string path = Path.Combine(Directory.GetCurrentDirectory(),
+                "wwwroot", "images", file.FileName);
 
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                blog.Image = String.Concat("/images/", file.FileName);
+                _service.BlogService.CreateBlog(blog);
+                TempData["success"] = $"Blog has been created.";
                 return RedirectToAction("Index");
             }
             return View();
