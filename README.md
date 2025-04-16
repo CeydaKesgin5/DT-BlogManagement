@@ -66,6 +66,7 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 + AutoMapper
 + View Component
 + ViewModel
+**YouTube Link:** https://youtu.be/nCJZg3YRMlg
 
 **Register**
 ![register](https://github.com/user-attachments/assets/1ebcd76f-e77b-4312-8833-109608b86464)
