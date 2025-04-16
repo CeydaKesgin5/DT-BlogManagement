@@ -46,7 +46,6 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 - Bloglar yayınlanma tarihine göre sıralama yapılabilir.
 - **Notification:** Kullanıcılara belirli işlemler sonrasında sistem bildirimleri gösterilir.
 - Kullanıcılar bloglarını ve kayıt bilgilerini görüntüleyebilir.
-- TempData ve ViewBag
 
 
 ## Kullanılan Teknolojiler
@@ -67,6 +66,8 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 + View Component
 + ViewModel
 **YouTube Link:** https://youtu.be/nCJZg3YRMlg
+  
+> `appsettings.json` dosyasındaki gerekli düzemleme yapılması gerekmektedir. (Server=...;)
 
 **Register**
 ![register](https://github.com/user-attachments/assets/1ebcd76f-e77b-4312-8833-109608b86464)
