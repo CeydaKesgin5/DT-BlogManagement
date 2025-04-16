@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddRazorPages();
+
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -77,6 +79,8 @@ app.UseRouting();
 
 app.UseAuthentication(); 
 app.UseAuthorization();
+
+app.MapRazorPages();
 
 app.MapStaticAssets();
 

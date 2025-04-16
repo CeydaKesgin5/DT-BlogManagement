@@ -1,0 +1,52 @@
+﻿@page "/profile"
+@model BlogManagement.Pages.UserModel
+@{
+}
+<h2>My Blogs</h2>
+
+@if (Model.BlogsByUser == null || !Model.BlogsByUser.Any())
+{
+    <p>No blog posts found. Start writing your first one!</p>
+    <a asp-controller="Blog" asp-action="Create" class="btn btn-outline-secondary mt-3 .text-primary text-center">
+        <i class="fa alert-primary"></i> Create Blog
+    </a>
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Published At</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Blog blog in Model.BlogsByUser)
+            {
+                <tr>
+
+                    <td>
+                        <a asp-action="Get" asp-route-id="@blog.Id">
+                            <img class="border border-light rounded" src="@blog?.Image"
+                                 width="100" />
+                        </a>
+
+                    </td>
+
+                    <td class="text-left" style="font-size: 20px;">
+                        <a asp-controller="Blog" asp-action="Get" asp-route-id="@blog.Id">
+                            @blog.Title
+
+                        </a>
+                        <br />
+                        <p class=".text-secondary" style="font-size: 15px">@blog.Author</p>
+                    </td>
+
+                    <td>@blog.PublishedAt.ToString("d")</td>
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+}
