@@ -66,6 +66,13 @@ Kullanıcıların blog yazılarını oluşturabildiği, okuyabildiği ve yönete
 - View Component
 - ViewModel
 
+![Register](https://github.com/user-attachments/assets/8772ad59-494c-4570-baaa-2c55b4aa69bd)
+![BlogList](https://github.com/user-attachments/assets/b3a5b10b-fca0-491b-bdd8-0d3b3e7c3582)
+![Create](https://github.com/user-attachments/assets/00320bee-26ef-42b7-aaa9-6955f8370849)
+![Admin Panel](https://github.com/user-attachments/assets/0af55128-b79b-499b-895d-6fd0bc1d0f8e)
+![Categories](https://github.com/user-attachments/assets/06b563bb-fc65-4f06-8e29-49ba0e4768ad)
+![UserList](https://github.com/user-attachments/assets/7261e824-528b-49ba-87c6-224088fead5e)
+![Comments](https://github.com/user-attachments/assets/7aa4dc2b-0f50-4314-81f1-ce7d1005ae17)
 
 
 
