@@ -1,6 +1,6 @@
 # DT-BlogManagement
 
-Bu proje, Doğuş Teknoloji Bootcamp kapsamında geliştirilmiştir. Proje sürecinde **ASP.NET Core MVC, Entity Framework Core, Razor Pages, SOLID prensipleri** ve modern web teknolojileri kullanılmıştır. IService, IRepository gibi interface’ler üzerinden uygulama loosely coupled hale getirilmiştir.
+Proje sürecinde **ASP.NET Core MVC, Entity Framework Core, Razor Pages, SOLID prensipleri** ve modern web teknolojileri kullanılmıştır. IService, IRepository gibi interface’ler üzerinden uygulama loosely coupled hale getirilmiştir.
 
 ## Proje Özeti
 
