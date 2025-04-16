@@ -9,7 +9,6 @@
         <tr>
             <th>UserId</th>
             <th>Username</th>
-           
             <th>Email</th>
             <th>Operations</th>
         </tr>
@@ -21,26 +20,15 @@
                 <td>@user.Id</td>
                 <td>@user.UserName</td>
                 <td>@user.Email</td>
-
                 <td>
-                    <div class="dropdown">
-                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            &#x22EE;
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item text-warning" asp-action="Update" asp-route-id="@user.Id">
-                                    <i class="fa fa-edit"></i> Edit
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item text-danger" asp-action="Delete" asp-route-id="@user.Id">
-                                    <i class="fa fa-trash"></i> Delete
-                                </a>
-                            </li>
-                            
-                        </ul>
+                    <div class="btn-group">
+
+                        <a data-toggle="tooltip" data-placement="top" title="Delete" class="btn btn-danger"
+                           asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-id="@user.Id">
+                            <i class="fa fa-trash"></i> Delete
+                        </a>
                     </div>
+
                 </td>
             </tr>
         }

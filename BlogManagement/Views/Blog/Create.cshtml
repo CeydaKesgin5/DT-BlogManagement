@@ -38,7 +38,7 @@
 
     <div class="form-group my-3">
         <label asp-for="Image"></label>
-        <input name="file" type="file" class="form-control" />
+        <input asp-for="Image" name="file" type="file" class="form-control" />
         <span asp-validation-for="Image" class="text-danger"></span>
     </div>
     <input type="hidden" asp-for="UserId" value="@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value" />

@@ -28,6 +28,10 @@ namespace BlogManagement.Areas.Admin.Controllers
         {
 
             var allBlogs = _service.BlogService.GetAllBlogs(false);
+            ViewBag.BlogCount=allBlogs.Count();
+            ViewBag.UserCount = _service.AuthService.GetAllUsers().Count();
+            ViewBag.CategoryCount = _service.CategoryService.GetAllCategories(false).Count();
+            ViewBag.CommentCount = _service.CommentService.GetAllComments(false).Count();
             return View(allBlogs);
 
         }

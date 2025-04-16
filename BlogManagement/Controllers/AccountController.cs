@@ -72,7 +72,6 @@ namespace BlogManagement.Controllers
                 Email = model.Email,
 
             };
-            TempData["success"] = $"Kayıt işlemi başarıyla gerçekleşti!";
             var result = await _userManager.CreateAsync(user, model.Password);
             //rol ataması
             if (result.Succeeded)
@@ -81,6 +80,8 @@ namespace BlogManagement.Controllers
                     .AddToRoleAsync(user, "User");
                 if (roleResult.Succeeded)
                     return RedirectToAction("Login", new { ReturnUrl = "/" });
+                TempData["success"] = $"Kayıt işlemi başarıyla gerçekleşti!";
+
             }
             else
             {
@@ -90,7 +91,7 @@ namespace BlogManagement.Controllers
                 }
             }
 
-            return View("Login");
+            return View();
         }
 
         [HttpGet]

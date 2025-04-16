@@ -2,13 +2,13 @@
 
 
 <ul class="list-group">
-    <li class="list-group-item">
-        <a asp-controller="Blog" asp-action="Index">All Blogs</a>
+    <li class="list-group-item text-dark">
+        <a class="text-dark" asp-controller="Blog" asp-action="Index">All Blogs</a>
     </li>
     @foreach (var category in Model)
     {
-        <li class="list-group-item">
-            <a asp-controller="Blog" asp-action="Index" asp-route-categoryId="@category.CategoryID">
+        <li class="list-group-item text-dark">
+            <a class="text-dark" asp-controller="Blog" asp-action="Index" asp-route-categoryId="@category.CategoryID">
                 @category.CategoryName
             </a>
         </li>

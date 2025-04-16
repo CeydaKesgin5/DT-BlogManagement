@@ -1,7 +1,58 @@
 ﻿@using Entities.Models
 @model IEnumerable<Blog>
 
+<div class="row">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white" style="width: 18rem;">
+            <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2">Number of</h6>
+                <h5 class="card-title">Categories</h5>
+                <h3 class="text-center display-3">
+                    @ViewBag.CategoryCount
+                </h3>
 
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-danger text-white" style="width: 18rem;">
+            <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2">Number of</h6>
+                <h5 class="card-title">Blogs</h5>
+                <h3 class="text-center display-3">
+                    @ViewBag.BlogCount
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-info text-white" style="width: 18rem;">
+            <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2">Number of</h6>
+                <h5 class="card-title">Users</h5>
+                <h3 class="text-center display-3">
+                    @ViewBag.UserCount
+                </h3>
+            
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-warning text-white" style="width: 18rem;">
+            <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2">Number of</h6>
+                <h5 class="card-title">Comments</h5>
+                <h3 class="text-center display-3">
+                    @ViewBag.CommentCount
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br /><br />
 
 <div class="row">
    
