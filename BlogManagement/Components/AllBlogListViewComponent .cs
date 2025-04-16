@@ -5,9 +5,9 @@ namespace BlogManagement.Components
 {
     public class AllBlogListViewComponent:ViewComponent
     {
-        private readonly IService _manager;
+        private readonly IServiceManager _manager;
 
-        public AllBlogListViewComponent(IService manager)
+        public AllBlogListViewComponent(IServiceManager manager)
         {
             _manager = manager;
         }

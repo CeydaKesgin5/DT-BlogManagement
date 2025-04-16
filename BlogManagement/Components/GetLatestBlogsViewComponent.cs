@@ -5,9 +5,9 @@ namespace BlogManagement.Components
 {
     public class GetLatestBlogsViewComponent :ViewComponent
     {
-        private readonly IService _service;
+        private readonly IServiceManager _service;
 
-        public GetLatestBlogsViewComponent(IService service)
+        public GetLatestBlogsViewComponent(IServiceManager service)
         {
             _service = service;
         }

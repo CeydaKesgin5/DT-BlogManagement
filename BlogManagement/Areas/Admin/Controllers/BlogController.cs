@@ -13,9 +13,9 @@ namespace BlogManagement.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class BlogController : Controller
     {
-        private readonly IService _service;
+        private readonly IServiceManager _service;
         private readonly IBlogService _blogService;
-        public BlogController(IService service, IBlogService blogService)
+        public BlogController(IServiceManager service, IBlogService blogService)
         {
             _service = service;
             _blogService = blogService;

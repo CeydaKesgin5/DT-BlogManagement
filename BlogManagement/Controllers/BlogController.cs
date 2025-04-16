@@ -11,9 +11,9 @@ namespace BlogManagement.Controllers
     [Authorize]
     public class BlogController : Controller
     {
-        private readonly IService _service;
+        private readonly IServiceManager _service;
         private readonly IBlogService _blogService;
-        public BlogController(IService service, IBlogService blogService)
+        public BlogController(IServiceManager service, IBlogService blogService)
         {
             _service = service;
             _blogService = blogService;
@@ -94,17 +94,7 @@ namespace BlogManagement.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        //public IActionResult Create([FromForm] Blog blog)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _service.BlogService.CreateBlog(blog);
-        //        TempData["success"] = $"Başarıyla eklendi! {blog}";
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View();
-        //}
+      
         public async Task<IActionResult> CreateAsync([FromForm] Blog blog, IFormFile file)
         {
             if (ModelState.IsValid)

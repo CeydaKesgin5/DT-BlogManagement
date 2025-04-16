@@ -8,10 +8,10 @@ namespace BlogManagement.Pages
 {
     public class UserModel : PageModel
     {
-        private readonly IService _manager;
+        private readonly IServiceManager _manager;
         private readonly IBlogService _blogService;
         public IEnumerable<Blog> BlogsByUser { get; set; }
-        public UserModel(IService manager, IBlogService blogService)
+        public UserModel(IServiceManager manager, IBlogService blogService)
         {
             _manager = manager;
             _blogService = blogService;

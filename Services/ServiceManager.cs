@@ -2,13 +2,13 @@
 
 namespace Services
 {
-    public class Service : IService
+    public class ServiceManager : IServiceManager
     {
         private readonly IBlogService _service;
         private readonly ICategoryService _categoryService;
         private readonly IAuthService _authService;
         private readonly ICommentService _commentService;
-        public Service(IBlogService blogService,
+        public ServiceManager(IBlogService blogService,
         ICategoryService categoryService,
         IAuthService authService,
         ICommentService commentService)

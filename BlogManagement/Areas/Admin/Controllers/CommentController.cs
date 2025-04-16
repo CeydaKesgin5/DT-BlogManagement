@@ -9,9 +9,9 @@ namespace BlogManagement.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class CommentController: Controller
     {
-        private readonly IService _commentService;
+        private readonly IServiceManager _commentService;
 
-        public CommentController(IService commentService)
+        public CommentController(IServiceManager commentService)
         {
             _commentService = commentService;
         }

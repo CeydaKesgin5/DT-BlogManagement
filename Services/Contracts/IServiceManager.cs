@@ -1,6 +1,6 @@
 ﻿namespace Services.Contracts
 {
-    public interface IService
+    public interface IServiceManager
     {
         IBlogService BlogService { get;}
         ICategoryService CategoryService { get; }

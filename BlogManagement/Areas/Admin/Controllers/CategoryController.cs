@@ -10,9 +10,9 @@ namespace BlogManagement.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class CategoryController:Controller
     {
-        private readonly IService _service;
+        private readonly IServiceManager _service;
         
-        public CategoryController(IService service)
+        public CategoryController(IServiceManager service)
         {
             _service = service;
         }

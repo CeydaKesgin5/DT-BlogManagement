@@ -11,10 +11,10 @@ namespace BlogManagement.Pages
     public class ProfileModel : PageModel
     {
 
-        private readonly IService _manager;
+        private readonly IServiceManager _manager;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public ProfileModel(IService manager, UserManager<IdentityUser> userManager)
+        public ProfileModel(IServiceManager manager, UserManager<IdentityUser> userManager)
         {
             _manager = manager;
             _userManager = userManager;

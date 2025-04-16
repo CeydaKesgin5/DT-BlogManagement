@@ -1,2 +1,13 @@
 ﻿@model IEnumerable<Entities.Models.Blog>
-@await Html.PartialAsync("_BlogList", Model)
+@if (Model != null && Model.Any())
+{
+    @await Html.PartialAsync("_BlogList", Model)
+}
+else
+{
+    <br />
+    <br />
+    <br />
+
+    <p>There are no blogs available in this category.</p>
+}

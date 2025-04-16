@@ -13,9 +13,9 @@ namespace BlogManagement.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
-        private readonly IService _manager;
+        private readonly IServiceManager _manager;
 
-        public UserController(IService manager)
+        public UserController(IServiceManager manager)
         {
             _manager = manager;
         }
